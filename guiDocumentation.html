@@ -1,0 +1,1363 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>gui API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>gui</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import json
+import os
+import tkinter as tk
+from json.decoder import JSONDecodeError
+from tkinter import filedialog, messagebox
+
+from PIL import ImageTk, Image
+
+root = tk.Tk()
+root.title(&#34;Haddock gui&#34;)
+root.geometry(&#34;500x500&#34;)
+root.iconphoto(False, tk.PhotoImage(file=&#39;HADDOCK-logo.png&#39;))
+
+
+class superparent:
+
+    def __init__(self, master):
+        &#34;&#34;&#34;initialize and ask for json file&#34;&#34;&#34;
+        self.myFrame = tk.Frame(master)
+        self.myFrame.place(width=500, height=500)
+        self.molecule_image = ImageTk.PhotoImage(Image.open(&#34;molecule100.jpg&#34;))
+        self.molecule_image_small = ImageTk.PhotoImage(Image.open(&#34;molecule25.jpg&#34;))
+        self.seconds = 0
+        self.changes = []
+        self.old_data = []
+        self.new_data = []
+        self.mbox = tk.messagebox
+        tk.Button(self.myFrame, text=&#34;Click me and and then select a Json file&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.load_json(), self.clear_window(), self.molecule_window(), self.faq()]) \
+            .place(relheight=0.2, relwidth=1)
+
+    def load_json(self):
+        &#34;&#34;&#34;load json into memory&#34;&#34;&#34;
+        file = tk.filedialog.askopenfile(&#34;r&#34;, filetypes=[(&#39;Json files&#39;, &#39;*.json&#39;)])
+        if not file:
+            self.mbox.showinfo(message=&#34;I need a json file&#34;)
+            if not hasattr(self, &#34;contents&#34;):
+                self.mbox.showinfo(message=&#34;Sorry I really need a json file to begin working,\
+                please run the program again and select one. exiting.&#34;)
+                exit()
+        else:
+            try:
+                self.name = os.path.basename(file.name)
+                self.contents = json.load(file)
+                file.close()
+
+            except JSONDecodeError:
+                self.mbox.showinfo(message=&#34;something is wrong with this file,\
+                I cannot load it. Maybe it&#39;s empty?&#34;)
+                self.load_json()
+
+    def helpmessage(self):
+        return &#34;&#34;&#34;Greetings, Here is an explanation of how to use this program.\n\nClicking the button will open up a file browser, use this to navigate to where you downloaded your json file from the haddock website, and select that json file.\n\nThe gui will list all the molecules in the json on the left side, click on these picture for options on how to edit them.\n\nOn the right you will have various options\n\nYou can export/insert the table(s) to/from a seperate txt file\nYou can show this text again with the help text button\nYou can click to see a list of changes you have made incase you forgot which part of which molecule you edited\nYou can implement a new molecule, this will ask you for a pdb file. select your choice and a new molecule will be added\nyou can delete a molecule incase you uploaded a new molecule with the wrong file\nyou can save your edited json as a new file, just type in the name. The json file extension is added automaticly\nyou can switch to a different json file without needing to reboot the program, don&#39;t forget to save your previous json.\n\nWhen you click on a molecule you will be taken to the option screen of your selected choice.\n\nYou can save the pdb of the molecule as a seperate pdb file by clicking on the save pdb button.\nyou can switch the current pdb with a pdb on your hard drive by clicking the replace pdb button.\nYou can edit the active residue of the molecule by clicking the edit active residue button.\nIn the active residue editing screen, simply copy paste your active residue list in the white box.\nIt should look something like this: 50,23,23,12\nClick the save button when you are done.\nIn the passive residue editing screen, simply copy paste your passive residue list in the white box.\nIt should look something like this: 50,23,23,12\nClick the save button when you are done
+        
+        &#34;&#34;&#34;
+
+    def faq(self):
+        self.mbox.showinfo(message=self.helpmessage())
+
+    def clear_window(self):
+        &#34;&#34;&#34;clear the screen so you can create new objects on it&#34;&#34;&#34;
+        for items in self.myFrame.winfo_children():
+            items.destroy()
+
+    def molecule_window(self):
+        &#34;&#34;&#34;display molecule buttons&#34;&#34;&#34;
+        self.show_tables()
+        if len(self.contents[&#34;partners&#34;]) &gt; 5:
+            molecule_button_image = self.molecule_image_small
+        else:
+            molecule_button_image = self.molecule_image
+        x = 0
+        for item in self.contents[&#34;partners&#34;]:
+            tk.Button(self.myFrame, wraplength=130, text=&#34; Molecule &#34; + item + &#34; options&#34;,
+                      image=molecule_button_image, compound=tk.LEFT, justify=tk.RIGHT, relief=&#34;groove&#34;,
+                      command=lambda item=item: [self.clear_window(), self.molecule_stats(item)]) \
+                .place(relheight=1 / len(self.contents[&#34;partners&#34;]), relwidth=0.5, relx=0, rely=0 + x)
+            x += 1 / len(self.contents[&#34;partners&#34;])
+
+    def show_tables(self):
+        &#34;&#34;&#34;display table buttons&#34;&#34;&#34;
+        x = 0
+        for item in self.contents:
+            if &#34;tblfile&#34; in item:
+                tk.Button(self.myFrame, text=f&#34;Click me for options on {item}&#34;, relief=&#34;groove&#34;,
+                          command=lambda item=item: [self.clear_window(), self.table_stats(item)]) \
+                    .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0 + x)
+                x += 0.1
+
+        tk.Button(self.myFrame, text=&#34;Click me if you want help text&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.faq()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.3)
+        tk.Button(self.myFrame, text=&#34;Click me to see a list of changes made&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.clear_window(), self.logging()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.4)
+        tk.Button(self.myFrame, text=&#34;Click me to implement a new molecule&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.new_molecule(), self.clear_window(), self.molecule_window()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.5)
+        tk.Button(self.myFrame, text=&#34;Click me to delete a molecule&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.clear_window(), self.delete_molecule_window()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.6)
+        tk.Button(self.myFrame, text=&#34;Click me to save your json file&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.save_json()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.7)
+        tk.Button(self.myFrame, text=&#34;Click me to load in a new json file&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.load_json(), self.clear_window(), self.molecule_window()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.8)
+
+    def save_json(self):
+        &#34;&#34;&#34;save json file to disk&#34;&#34;&#34;
+        files = [(&#39;Json Document&#39;, &#39;*.json&#39;)]
+        save_json = tk.filedialog.asksaveasfile(filetypes=files, defaultextension=files)
+        if not save_json:
+            return
+        json.dump(self.contents, save_json, indent=4)
+        self.changes.append(f&#34;Json {self.name} saved to disk&#34;)
+        save_json.close()
+        json_update = f&#34;The json file {self.name} file has been updated&#34;
+        self.changes.append(json_update)
+        self.mbox.showinfo(message=&#34;Json succesfully saved&#34;)
+
+    def save_table(self, item):
+        &#34;&#34;&#34;save table file to disk&#34;&#34;&#34;
+        files = [(&#39;Text Document&#39;, &#39;*.txt&#39;)]
+        save_table = tk.filedialog.asksaveasfile(filetypes=files, defaultextension=files)
+        if not save_table:
+            return
+        save_table.write(self.contents[item])
+        self.changes.append(f&#34;table file of {item} from {self.name} saved to disk&#34;)
+        save_table.close()
+        self.mbox.showinfo(message=&#34;Table succesfully saved to disk&#34;)
+
+    def replace_table(self, item):
+        &#34;&#34;&#34;replace table from disk&#34;&#34;&#34;
+        table_file = tk.filedialog.askopenfile(&#34;r&#34;)
+        if not table_file:
+            return
+        if table_file.name.endswith(&#34;.txt&#34;):
+            table_update = f&#34;table {item} in the {self.name} file has been updated&#34;
+            self.changes.append(table_update)
+            self.contents[item] = table_file.read()
+            table_file.close()
+            self.mbox.showinfo(message=&#34;table succesfully replaced&#34;)
+        else:
+            return
+
+    def save_pdb(self, item):
+        &#34;&#34;&#34;save pdb to disk&#34;&#34;&#34;
+        files = [(&#39;PDB Document&#39;, &#39;*.pdb&#39;)]
+        pdb_file = tk.filedialog.asksaveasfile(filetypes=files, defaultextension=files)
+        if not pdb_file:
+            return
+        pdb_file.write(self.contents[&#39;partners&#39;][item][&#39;raw_pdb&#39;])
+        self.changes.append(f&#34;PDB of molecule {item} in the {self.name} file has been updated&#34;)
+        pdb_file.close()
+        self.mbox.showinfo(message=&#34;pdb succesfully saved to disk&#34;)
+
+    def replace_pdb(self, index):
+        &#34;&#34;&#34;replace pdb in molecule&#34;&#34;&#34;
+        pdb_file = tk.filedialog.askopenfile(&#34;r&#34;)
+        if not pdb_file:
+            return
+        if pdb_file.name.endswith(&#34;.pdb&#34;):
+            pdb_update = f&#34;PDB of molecule {index} in the {self.name} file has been updated&#34;
+            self.changes.append(pdb_update)
+            self.contents[&#39;partners&#39;][index][&#39;raw_pdb&#39;] = pdb_file.read()
+            pdb_file.close()
+            self.mbox.showinfo(message=&#34;pdb succesfully replaced&#34;)
+        else:
+            return
+
+    def save_active_residue_list(self, index, entry):
+        &#34;&#34;&#34;save active residue&#34;&#34;&#34;
+        residue_update = f&#34;Active residue list of molecule {index} in the {self.name} file has been updated&#34;
+        self.changes.append(residue_update)
+        if &#34;[&#34; and &#34;]&#34; not in entry:
+            entry = &#34;[&#34; + entry + &#34;]&#34;
+        self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;] = entry
+        self.mbox.showinfo(message=&#34;residue_list succesfully replaced&#34;)
+        self.clear_window()
+        self.molecule_window()
+
+    def save_passive_residue_list(self, index, entry):
+        &#34;&#34;&#34;save passive residue&#34;&#34;&#34;
+        residue_update = f&#34;Passive residue list of molecule {index} in the {self.name} file has been updated&#34;
+        self.changes.append(residue_update)
+        if &#34;[&#34; and &#34;]&#34; not in entry:
+            entry = &#34;[&#34; + entry + &#34;]&#34;
+        self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;] = entry
+        self.mbox.showinfo(message=&#34;residue_list succesfully replaced&#34;)
+        self.clear_window()
+        self.molecule_window()
+
+    def edit_active_residue(self, index):
+        &#34;&#34;&#34;change active residue&#34;&#34;&#34;
+        tk.Label(self.myFrame, text=&#34;Active res list, use the box below for editing&#34;) \
+            .place(relheight=0.1, relwidth=1, relx=0, rely=0)
+        e = tk.Entry(self.myFrame)
+        monkeyproof = str(self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;])[1:-1]
+        e.insert(tk.END, f&#34;{monkeyproof}&#34;)
+        e.place(relheight=0.1, relwidth=1, relx=0, rely=0.1)
+        tk.Button(self.myFrame, text=&#34;Save current input&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.save_active_residue_list(index, e.get())]) \
+            .place(relheight=0.1, relwidth=1, relx=0, rely=0.2)
+        tk.Button(self.myFrame, text=&#34;Click me to go back to molecule selection&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.clear_window(), self.molecule_window()]) \
+            .place(relheight=0.1, relwidth=1, relx=0, rely=0.9)
+
+    def edit_passive_residue(self, index):
+        &#34;&#34;&#34;change passive residue&#34;&#34;&#34;
+        tk.Label(self.myFrame,
+                 text=&#34;Passive res list, use the box below for editing&#34;) \
+            .place(relheight=0.1, relwidth=1, relx=0, rely=0)
+        e = tk.Entry(self.myFrame)
+        monkeyproof = str(self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;])[1:-1]
+        e.insert(tk.END, f&#34;{monkeyproof}&#34;)
+        e.place(relheight=0.1, relwidth=1, relx=0, rely=0.1)
+        tk.Button(self.myFrame, text=&#34;Save current input&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.save_passive_residue_list(index, e.get())]) \
+            .place(relheight=0.1, relwidth=1, relx=0, rely=0.2)
+        tk.Button(self.myFrame, text=&#34;Click me to go back to molecule selection&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.clear_window(), self.molecule_window()]) \
+            .place(relheight=0.1, relwidth=1, relx=0, rely=0.9)
+
+    def table_stats(self, item):
+        &#34;&#34;&#34;list table options&#34;&#34;&#34;
+        tk.Label(self.myFrame, text=f&#34;{item}&#34;).place(relheight=0.1, relwidth=0.5, relx=0, rely=0)
+        tk.Label(self.myFrame, text=f&#34;{item}&#34;).place(relheight=0.1, relwidth=0.5, relx=0, rely=0.1)
+        tk.Button(self.myFrame, text=&#34;save this file to disk&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.save_table(item)]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0)
+        tk.Button(self.myFrame, text=&#34;replace with another table&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.replace_table(item)]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.1)
+        tk.Button(self.myFrame, text=&#34;Click me to go back to molecule selection&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.clear_window(), self.molecule_window()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.9)
+        # tk.Button(self.myFrame, text=&#34;save json&#34;,
+        #          command=lambda: [self.save_json()]) \
+        #    .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.6)
+        # tk.Button(self.myFrame, text=&#34;new json&#34;,
+        #          command=lambda: [self.load_json()]) \
+        #    .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.7)
+        # tk.Button(self.myFrame, text=&#34;Click to see changes&#34;,
+        #          command=lambda: [self.clear_window(), self.logging()]) \
+        #    .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.8)
+
+    def molecule_stats(self, item):
+        &#34;&#34;&#34;list molecule options&#34;&#34;&#34;
+        tk.Label(self.myFrame, text=f&#34;PDB of molecule {item}&#34;).place(relheight=0.1, relwidth=0.5, relx=0, rely=0)
+        tk.Button(self.myFrame, text=&#34;save PDB as a seperate .pdb file&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.save_pdb(item)]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0)
+        tk.Button(self.myFrame, text=&#34;replace PDB&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.replace_pdb(item)]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.1)
+        tk.Label(self.myFrame, text=&#34;Active res&#34;).place(relheight=0.1, relwidth=0.5, relx=0, rely=0.2)
+        tk.Button(self.myFrame, text=&#34;edit Active res&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.clear_window(), self.edit_active_residue(item)]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.2)
+        tk.Label(self.myFrame, text=&#34;Passive res&#34;).place(relheight=0.1, relwidth=0.5, relx=0, rely=0.3)
+        tk.Button(self.myFrame, text=&#34;edit Passive res&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.clear_window(), self.edit_passive_residue(item)]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.3)
+        tk.Button(self.myFrame, text=&#34;Click me to go back to molecule selection&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.clear_window(), self.molecule_window()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.9)
+        # tk.Button(self.myFrame, text=&#34;save json&#34;,
+        #          command=lambda: [self.save_json()]) \
+        #    .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.6)
+        # tk.Button(self.myFrame, text=&#34;new json&#34;,
+        #          command=lambda: [self.load_json()]) \
+        #    .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.7)
+        # tk.Button(self.myFrame, text=&#34;Click to see changes&#34;,
+        #          command=lambda: [self.clear_window(), self.logging()]) \
+        #    .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.8)
+
+    def save_logfile(self):
+        &#34;&#34;&#34;save logfile to disk&#34;&#34;&#34;
+        files = [(&#39;Text Document&#39;, &#39;*.txt&#39;)]
+        log_file = tk.filedialog.asksaveasfile(filetypes=files, defaultextension=files)
+        if not log_file:
+            return
+        log_file.write(&#34;\n&#34;.join(self.changes))
+        log_file.close()
+        self.mbox.showinfo(message=&#34;Logfile succesfully saved to disk&#34;)
+
+    def logging(self):
+        &#34;&#34;&#34;overview of changes made&#34;&#34;&#34;
+        tk.Button(self.myFrame, text=&#34;Click me to go back to molecule selection&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.clear_window(), self.molecule_window()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.9)
+        tk.Button(self.myFrame, text=&#34;Click me to save this list to disk&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.clear_window(), self.save_logfile()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0, rely=0.9)
+        x = 0
+        for item in self.changes:
+            tk.Label(self.myFrame, text=f&#34;{item}&#34;).place(relheight=0.1, relwidth=1, relx=0, rely=0 + x)
+            x += 0.1
+
+    def new_molecule(self):
+        &#34;&#34;&#34;insert new molecule&#34;&#34;&#34;
+        pdb_file = tk.filedialog.askopenfile(&#34;r&#34;)
+        if not pdb_file:
+            return
+        if pdb_file.name.endswith(&#34;.pdb&#34;):
+            pdb_update = f&#34;New molecule in the {self.name} file has been added&#34;
+            molecule_list = self.contents[&#39;partners&#39;]
+
+            new_molecule = {&#39;activereslist&#39;: &#39;[]&#39;,
+                            &#39;auto_his&#39;: &#39;empty&#39;,
+                            &#39;auto_passive&#39;: &#39;empty&#39;,
+                            &#39;auto_passive_radius&#39;: &#39;empty&#39;,
+                            &#39;cg&#39;: &#39;empty&#39;,
+                            &#39;chain&#39;: &#39;empty&#39;,
+                            &#39;charged_cter&#39;: &#39;empty&#39;,
+                            &#39;charged_nter&#39;: &#39;empty&#39;,
+                            &#39;cyclic&#39;: &#39;empty&#39;,
+                            &#39;dna&#39;: &#39;empty&#39;,
+                            &#39;filter_buried_active&#39;: &#39;empty&#39;,
+                            &#39;filter_buried_active_cutoff&#39;: &#39;empty&#39;,
+                            &#39;fix_origin&#39;: &#39;empty&#39;,
+                            &#39;fully_flex&#39;: &#39;empty&#39;,
+                            &#39;his_patch&#39;: &#39;empty&#39;,
+                            &#39;link_file&#39;: &#39;empty&#39;,
+                            &#39;mode&#39;: &#39;empty&#39;,
+                            &#39;moleculetype&#39;: &#39;empty&#39;,
+                            &#39;par_file&#39;: &#39;empty&#39;,
+                            &#39;partnerlist&#39;: &#39;empty&#39;,
+                            &#39;passivereslist&#39;: &#39;[]&#39;,
+                            &#39;pdb_file&#39;: &#39;empty&#39;,
+                            &#39;pdb_list&#39;: &#39;empty&#39;,
+                            &#39;psf_file&#39;: &#39;empty&#39;,
+                            &#39;raw_pdb&#39;: f&#39;{pdb_file.read()}&#39;,
+                            &#39;root&#39;: &#39;empty&#39;,
+                            &#39;segid&#39;: &#39;empty&#39;,
+                            &#39;semi_flex&#39;: &#39;empty&#39;,
+                            &#39;shape&#39;: &#39;empty&#39;,
+                            &#39;top_file&#39;: &#39;empty&#39;,
+                            }
+
+            last_molecule = max([int(i) for i in molecule_list])
+            molecule_list[f&#34;{int(last_molecule) + 1}&#34;] = new_molecule
+            pdb_file.close()
+            self.changes.append(pdb_update)
+            self.mbox.showinfo(message=&#34;pdb succesfully inserted&#34;)
+
+        else:
+            return
+
+    def delete_molecule(self, item):
+        &#34;&#34;&#34;delete molecule&#34;&#34;&#34;
+        del self.contents[&#39;partners&#39;][f&#39;{item}&#39;]
+
+    def delete_molecule_window(self):
+        &#34;&#34;&#34;screen to delete molecules&#34;&#34;&#34;
+        tk.Button(self.myFrame, text=&#34;Click me to go back to molecule selection&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.clear_window(), self.molecule_window()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.9)
+        x = 0
+        for item in self.contents[&#34;partners&#34;]:
+            tk.Button(self.myFrame, text=&#34;Click me to delete molecule &#34; + item, relief=&#34;groove&#34;,
+                      command=lambda item=item: [self.delete_molecule(item), self.clear_window(),
+                                                 self.molecule_window()]) \
+                .place(relheight=1 / len(self.contents[&#34;partners&#34;]), relwidth=0.5, relx=0, rely=0 + x)
+            x += 1 / len(self.contents[&#34;partners&#34;])
+
+
+if __name__ == &#34;__main__&#34;:
+    e = superparent(root)
+    root.mainloop()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="gui.superparent"><code class="flex name class">
+<span>class <span class="ident">superparent</span></span>
+<span>(</span><span>master)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>initialize and ask for json file</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class superparent:
+
+    def __init__(self, master):
+        &#34;&#34;&#34;initialize and ask for json file&#34;&#34;&#34;
+        self.myFrame = tk.Frame(master)
+        self.myFrame.place(width=500, height=500)
+        self.molecule_image = ImageTk.PhotoImage(Image.open(&#34;molecule100.jpg&#34;))
+        self.molecule_image_small = ImageTk.PhotoImage(Image.open(&#34;molecule25.jpg&#34;))
+        self.seconds = 0
+        self.changes = []
+        self.old_data = []
+        self.new_data = []
+        self.mbox = tk.messagebox
+        tk.Button(self.myFrame, text=&#34;Click me and and then select a Json file&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.load_json(), self.clear_window(), self.molecule_window(), self.faq()]) \
+            .place(relheight=0.2, relwidth=1)
+
+    def load_json(self):
+        &#34;&#34;&#34;load json into memory&#34;&#34;&#34;
+        file = tk.filedialog.askopenfile(&#34;r&#34;, filetypes=[(&#39;Json files&#39;, &#39;*.json&#39;)])
+        if not file:
+            self.mbox.showinfo(message=&#34;I need a json file&#34;)
+            if not hasattr(self, &#34;contents&#34;):
+                self.mbox.showinfo(message=&#34;Sorry I really need a json file to begin working,\
+                please run the program again and select one. exiting.&#34;)
+                exit()
+        else:
+            try:
+                self.name = os.path.basename(file.name)
+                self.contents = json.load(file)
+                file.close()
+
+            except JSONDecodeError:
+                self.mbox.showinfo(message=&#34;something is wrong with this file,\
+                I cannot load it. Maybe it&#39;s empty?&#34;)
+                self.load_json()
+
+    def helpmessage(self):
+        return &#34;&#34;&#34;Greetings, Here is an explanation of how to use this program.\n\nClicking the button will open up a file browser, use this to navigate to where you downloaded your json file from the haddock website, and select that json file.\n\nThe gui will list all the molecules in the json on the left side, click on these picture for options on how to edit them.\n\nOn the right you will have various options\n\nYou can export/insert the table(s) to/from a seperate txt file\nYou can show this text again with the help text button\nYou can click to see a list of changes you have made incase you forgot which part of which molecule you edited\nYou can implement a new molecule, this will ask you for a pdb file. select your choice and a new molecule will be added\nyou can delete a molecule incase you uploaded a new molecule with the wrong file\nyou can save your edited json as a new file, just type in the name. The json file extension is added automaticly\nyou can switch to a different json file without needing to reboot the program, don&#39;t forget to save your previous json.\n\nWhen you click on a molecule you will be taken to the option screen of your selected choice.\n\nYou can save the pdb of the molecule as a seperate pdb file by clicking on the save pdb button.\nyou can switch the current pdb with a pdb on your hard drive by clicking the replace pdb button.\nYou can edit the active residue of the molecule by clicking the edit active residue button.\nIn the active residue editing screen, simply copy paste your active residue list in the white box.\nIt should look something like this: 50,23,23,12\nClick the save button when you are done.\nIn the passive residue editing screen, simply copy paste your passive residue list in the white box.\nIt should look something like this: 50,23,23,12\nClick the save button when you are done
+        
+        &#34;&#34;&#34;
+
+    def faq(self):
+        self.mbox.showinfo(message=self.helpmessage())
+
+    def clear_window(self):
+        &#34;&#34;&#34;clear the screen so you can create new objects on it&#34;&#34;&#34;
+        for items in self.myFrame.winfo_children():
+            items.destroy()
+
+    def molecule_window(self):
+        &#34;&#34;&#34;display molecule buttons&#34;&#34;&#34;
+        self.show_tables()
+        if len(self.contents[&#34;partners&#34;]) &gt; 5:
+            molecule_button_image = self.molecule_image_small
+        else:
+            molecule_button_image = self.molecule_image
+        x = 0
+        for item in self.contents[&#34;partners&#34;]:
+            tk.Button(self.myFrame, wraplength=130, text=&#34; Molecule &#34; + item + &#34; options&#34;,
+                      image=molecule_button_image, compound=tk.LEFT, justify=tk.RIGHT, relief=&#34;groove&#34;,
+                      command=lambda item=item: [self.clear_window(), self.molecule_stats(item)]) \
+                .place(relheight=1 / len(self.contents[&#34;partners&#34;]), relwidth=0.5, relx=0, rely=0 + x)
+            x += 1 / len(self.contents[&#34;partners&#34;])
+
+    def show_tables(self):
+        &#34;&#34;&#34;display table buttons&#34;&#34;&#34;
+        x = 0
+        for item in self.contents:
+            if &#34;tblfile&#34; in item:
+                tk.Button(self.myFrame, text=f&#34;Click me for options on {item}&#34;, relief=&#34;groove&#34;,
+                          command=lambda item=item: [self.clear_window(), self.table_stats(item)]) \
+                    .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0 + x)
+                x += 0.1
+
+        tk.Button(self.myFrame, text=&#34;Click me if you want help text&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.faq()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.3)
+        tk.Button(self.myFrame, text=&#34;Click me to see a list of changes made&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.clear_window(), self.logging()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.4)
+        tk.Button(self.myFrame, text=&#34;Click me to implement a new molecule&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.new_molecule(), self.clear_window(), self.molecule_window()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.5)
+        tk.Button(self.myFrame, text=&#34;Click me to delete a molecule&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.clear_window(), self.delete_molecule_window()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.6)
+        tk.Button(self.myFrame, text=&#34;Click me to save your json file&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.save_json()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.7)
+        tk.Button(self.myFrame, text=&#34;Click me to load in a new json file&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.load_json(), self.clear_window(), self.molecule_window()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.8)
+
+    def save_json(self):
+        &#34;&#34;&#34;save json file to disk&#34;&#34;&#34;
+        files = [(&#39;Json Document&#39;, &#39;*.json&#39;)]
+        save_json = tk.filedialog.asksaveasfile(filetypes=files, defaultextension=files)
+        if not save_json:
+            return
+        json.dump(self.contents, save_json, indent=4)
+        self.changes.append(f&#34;Json {self.name} saved to disk&#34;)
+        save_json.close()
+        json_update = f&#34;The json file {self.name} file has been updated&#34;
+        self.changes.append(json_update)
+        self.mbox.showinfo(message=&#34;Json succesfully saved&#34;)
+
+    def save_table(self, item):
+        &#34;&#34;&#34;save table file to disk&#34;&#34;&#34;
+        files = [(&#39;Text Document&#39;, &#39;*.txt&#39;)]
+        save_table = tk.filedialog.asksaveasfile(filetypes=files, defaultextension=files)
+        if not save_table:
+            return
+        save_table.write(self.contents[item])
+        self.changes.append(f&#34;table file of {item} from {self.name} saved to disk&#34;)
+        save_table.close()
+        self.mbox.showinfo(message=&#34;Table succesfully saved to disk&#34;)
+
+    def replace_table(self, item):
+        &#34;&#34;&#34;replace table from disk&#34;&#34;&#34;
+        table_file = tk.filedialog.askopenfile(&#34;r&#34;)
+        if not table_file:
+            return
+        if table_file.name.endswith(&#34;.txt&#34;):
+            table_update = f&#34;table {item} in the {self.name} file has been updated&#34;
+            self.changes.append(table_update)
+            self.contents[item] = table_file.read()
+            table_file.close()
+            self.mbox.showinfo(message=&#34;table succesfully replaced&#34;)
+        else:
+            return
+
+    def save_pdb(self, item):
+        &#34;&#34;&#34;save pdb to disk&#34;&#34;&#34;
+        files = [(&#39;PDB Document&#39;, &#39;*.pdb&#39;)]
+        pdb_file = tk.filedialog.asksaveasfile(filetypes=files, defaultextension=files)
+        if not pdb_file:
+            return
+        pdb_file.write(self.contents[&#39;partners&#39;][item][&#39;raw_pdb&#39;])
+        self.changes.append(f&#34;PDB of molecule {item} in the {self.name} file has been updated&#34;)
+        pdb_file.close()
+        self.mbox.showinfo(message=&#34;pdb succesfully saved to disk&#34;)
+
+    def replace_pdb(self, index):
+        &#34;&#34;&#34;replace pdb in molecule&#34;&#34;&#34;
+        pdb_file = tk.filedialog.askopenfile(&#34;r&#34;)
+        if not pdb_file:
+            return
+        if pdb_file.name.endswith(&#34;.pdb&#34;):
+            pdb_update = f&#34;PDB of molecule {index} in the {self.name} file has been updated&#34;
+            self.changes.append(pdb_update)
+            self.contents[&#39;partners&#39;][index][&#39;raw_pdb&#39;] = pdb_file.read()
+            pdb_file.close()
+            self.mbox.showinfo(message=&#34;pdb succesfully replaced&#34;)
+        else:
+            return
+
+    def save_active_residue_list(self, index, entry):
+        &#34;&#34;&#34;save active residue&#34;&#34;&#34;
+        residue_update = f&#34;Active residue list of molecule {index} in the {self.name} file has been updated&#34;
+        self.changes.append(residue_update)
+        if &#34;[&#34; and &#34;]&#34; not in entry:
+            entry = &#34;[&#34; + entry + &#34;]&#34;
+        self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;] = entry
+        self.mbox.showinfo(message=&#34;residue_list succesfully replaced&#34;)
+        self.clear_window()
+        self.molecule_window()
+
+    def save_passive_residue_list(self, index, entry):
+        &#34;&#34;&#34;save passive residue&#34;&#34;&#34;
+        residue_update = f&#34;Passive residue list of molecule {index} in the {self.name} file has been updated&#34;
+        self.changes.append(residue_update)
+        if &#34;[&#34; and &#34;]&#34; not in entry:
+            entry = &#34;[&#34; + entry + &#34;]&#34;
+        self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;] = entry
+        self.mbox.showinfo(message=&#34;residue_list succesfully replaced&#34;)
+        self.clear_window()
+        self.molecule_window()
+
+    def edit_active_residue(self, index):
+        &#34;&#34;&#34;change active residue&#34;&#34;&#34;
+        tk.Label(self.myFrame, text=&#34;Active res list, use the box below for editing&#34;) \
+            .place(relheight=0.1, relwidth=1, relx=0, rely=0)
+        e = tk.Entry(self.myFrame)
+        monkeyproof = str(self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;])[1:-1]
+        e.insert(tk.END, f&#34;{monkeyproof}&#34;)
+        e.place(relheight=0.1, relwidth=1, relx=0, rely=0.1)
+        tk.Button(self.myFrame, text=&#34;Save current input&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.save_active_residue_list(index, e.get())]) \
+            .place(relheight=0.1, relwidth=1, relx=0, rely=0.2)
+        tk.Button(self.myFrame, text=&#34;Click me to go back to molecule selection&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.clear_window(), self.molecule_window()]) \
+            .place(relheight=0.1, relwidth=1, relx=0, rely=0.9)
+
+    def edit_passive_residue(self, index):
+        &#34;&#34;&#34;change passive residue&#34;&#34;&#34;
+        tk.Label(self.myFrame,
+                 text=&#34;Passive res list, use the box below for editing&#34;) \
+            .place(relheight=0.1, relwidth=1, relx=0, rely=0)
+        e = tk.Entry(self.myFrame)
+        monkeyproof = str(self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;])[1:-1]
+        e.insert(tk.END, f&#34;{monkeyproof}&#34;)
+        e.place(relheight=0.1, relwidth=1, relx=0, rely=0.1)
+        tk.Button(self.myFrame, text=&#34;Save current input&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.save_passive_residue_list(index, e.get())]) \
+            .place(relheight=0.1, relwidth=1, relx=0, rely=0.2)
+        tk.Button(self.myFrame, text=&#34;Click me to go back to molecule selection&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.clear_window(), self.molecule_window()]) \
+            .place(relheight=0.1, relwidth=1, relx=0, rely=0.9)
+
+    def table_stats(self, item):
+        &#34;&#34;&#34;list table options&#34;&#34;&#34;
+        tk.Label(self.myFrame, text=f&#34;{item}&#34;).place(relheight=0.1, relwidth=0.5, relx=0, rely=0)
+        tk.Label(self.myFrame, text=f&#34;{item}&#34;).place(relheight=0.1, relwidth=0.5, relx=0, rely=0.1)
+        tk.Button(self.myFrame, text=&#34;save this file to disk&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.save_table(item)]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0)
+        tk.Button(self.myFrame, text=&#34;replace with another table&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.replace_table(item)]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.1)
+        tk.Button(self.myFrame, text=&#34;Click me to go back to molecule selection&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.clear_window(), self.molecule_window()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.9)
+        # tk.Button(self.myFrame, text=&#34;save json&#34;,
+        #          command=lambda: [self.save_json()]) \
+        #    .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.6)
+        # tk.Button(self.myFrame, text=&#34;new json&#34;,
+        #          command=lambda: [self.load_json()]) \
+        #    .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.7)
+        # tk.Button(self.myFrame, text=&#34;Click to see changes&#34;,
+        #          command=lambda: [self.clear_window(), self.logging()]) \
+        #    .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.8)
+
+    def molecule_stats(self, item):
+        &#34;&#34;&#34;list molecule options&#34;&#34;&#34;
+        tk.Label(self.myFrame, text=f&#34;PDB of molecule {item}&#34;).place(relheight=0.1, relwidth=0.5, relx=0, rely=0)
+        tk.Button(self.myFrame, text=&#34;save PDB as a seperate .pdb file&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.save_pdb(item)]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0)
+        tk.Button(self.myFrame, text=&#34;replace PDB&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.replace_pdb(item)]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.1)
+        tk.Label(self.myFrame, text=&#34;Active res&#34;).place(relheight=0.1, relwidth=0.5, relx=0, rely=0.2)
+        tk.Button(self.myFrame, text=&#34;edit Active res&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.clear_window(), self.edit_active_residue(item)]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.2)
+        tk.Label(self.myFrame, text=&#34;Passive res&#34;).place(relheight=0.1, relwidth=0.5, relx=0, rely=0.3)
+        tk.Button(self.myFrame, text=&#34;edit Passive res&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.clear_window(), self.edit_passive_residue(item)]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.3)
+        tk.Button(self.myFrame, text=&#34;Click me to go back to molecule selection&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.clear_window(), self.molecule_window()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.9)
+        # tk.Button(self.myFrame, text=&#34;save json&#34;,
+        #          command=lambda: [self.save_json()]) \
+        #    .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.6)
+        # tk.Button(self.myFrame, text=&#34;new json&#34;,
+        #          command=lambda: [self.load_json()]) \
+        #    .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.7)
+        # tk.Button(self.myFrame, text=&#34;Click to see changes&#34;,
+        #          command=lambda: [self.clear_window(), self.logging()]) \
+        #    .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.8)
+
+    def save_logfile(self):
+        &#34;&#34;&#34;save logfile to disk&#34;&#34;&#34;
+        files = [(&#39;Text Document&#39;, &#39;*.txt&#39;)]
+        log_file = tk.filedialog.asksaveasfile(filetypes=files, defaultextension=files)
+        if not log_file:
+            return
+        log_file.write(&#34;\n&#34;.join(self.changes))
+        log_file.close()
+        self.mbox.showinfo(message=&#34;Logfile succesfully saved to disk&#34;)
+
+    def logging(self):
+        &#34;&#34;&#34;overview of changes made&#34;&#34;&#34;
+        tk.Button(self.myFrame, text=&#34;Click me to go back to molecule selection&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.clear_window(), self.molecule_window()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.9)
+        tk.Button(self.myFrame, text=&#34;Click me to save this list to disk&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.clear_window(), self.save_logfile()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0, rely=0.9)
+        x = 0
+        for item in self.changes:
+            tk.Label(self.myFrame, text=f&#34;{item}&#34;).place(relheight=0.1, relwidth=1, relx=0, rely=0 + x)
+            x += 0.1
+
+    def new_molecule(self):
+        &#34;&#34;&#34;insert new molecule&#34;&#34;&#34;
+        pdb_file = tk.filedialog.askopenfile(&#34;r&#34;)
+        if not pdb_file:
+            return
+        if pdb_file.name.endswith(&#34;.pdb&#34;):
+            pdb_update = f&#34;New molecule in the {self.name} file has been added&#34;
+            molecule_list = self.contents[&#39;partners&#39;]
+
+            new_molecule = {&#39;activereslist&#39;: &#39;[]&#39;,
+                            &#39;auto_his&#39;: &#39;empty&#39;,
+                            &#39;auto_passive&#39;: &#39;empty&#39;,
+                            &#39;auto_passive_radius&#39;: &#39;empty&#39;,
+                            &#39;cg&#39;: &#39;empty&#39;,
+                            &#39;chain&#39;: &#39;empty&#39;,
+                            &#39;charged_cter&#39;: &#39;empty&#39;,
+                            &#39;charged_nter&#39;: &#39;empty&#39;,
+                            &#39;cyclic&#39;: &#39;empty&#39;,
+                            &#39;dna&#39;: &#39;empty&#39;,
+                            &#39;filter_buried_active&#39;: &#39;empty&#39;,
+                            &#39;filter_buried_active_cutoff&#39;: &#39;empty&#39;,
+                            &#39;fix_origin&#39;: &#39;empty&#39;,
+                            &#39;fully_flex&#39;: &#39;empty&#39;,
+                            &#39;his_patch&#39;: &#39;empty&#39;,
+                            &#39;link_file&#39;: &#39;empty&#39;,
+                            &#39;mode&#39;: &#39;empty&#39;,
+                            &#39;moleculetype&#39;: &#39;empty&#39;,
+                            &#39;par_file&#39;: &#39;empty&#39;,
+                            &#39;partnerlist&#39;: &#39;empty&#39;,
+                            &#39;passivereslist&#39;: &#39;[]&#39;,
+                            &#39;pdb_file&#39;: &#39;empty&#39;,
+                            &#39;pdb_list&#39;: &#39;empty&#39;,
+                            &#39;psf_file&#39;: &#39;empty&#39;,
+                            &#39;raw_pdb&#39;: f&#39;{pdb_file.read()}&#39;,
+                            &#39;root&#39;: &#39;empty&#39;,
+                            &#39;segid&#39;: &#39;empty&#39;,
+                            &#39;semi_flex&#39;: &#39;empty&#39;,
+                            &#39;shape&#39;: &#39;empty&#39;,
+                            &#39;top_file&#39;: &#39;empty&#39;,
+                            }
+
+            last_molecule = max([int(i) for i in molecule_list])
+            molecule_list[f&#34;{int(last_molecule) + 1}&#34;] = new_molecule
+            pdb_file.close()
+            self.changes.append(pdb_update)
+            self.mbox.showinfo(message=&#34;pdb succesfully inserted&#34;)
+
+        else:
+            return
+
+    def delete_molecule(self, item):
+        &#34;&#34;&#34;delete molecule&#34;&#34;&#34;
+        del self.contents[&#39;partners&#39;][f&#39;{item}&#39;]
+
+    def delete_molecule_window(self):
+        &#34;&#34;&#34;screen to delete molecules&#34;&#34;&#34;
+        tk.Button(self.myFrame, text=&#34;Click me to go back to molecule selection&#34;, relief=&#34;groove&#34;,
+                  command=lambda: [self.clear_window(), self.molecule_window()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.9)
+        x = 0
+        for item in self.contents[&#34;partners&#34;]:
+            tk.Button(self.myFrame, text=&#34;Click me to delete molecule &#34; + item, relief=&#34;groove&#34;,
+                      command=lambda item=item: [self.delete_molecule(item), self.clear_window(),
+                                                 self.molecule_window()]) \
+                .place(relheight=1 / len(self.contents[&#34;partners&#34;]), relwidth=0.5, relx=0, rely=0 + x)
+            x += 1 / len(self.contents[&#34;partners&#34;])</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="gui.superparent.clear_window"><code class="name flex">
+<span>def <span class="ident">clear_window</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>clear the screen so you can create new objects on it</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def clear_window(self):
+    &#34;&#34;&#34;clear the screen so you can create new objects on it&#34;&#34;&#34;
+    for items in self.myFrame.winfo_children():
+        items.destroy()</code></pre>
+</details>
+</dd>
+<dt id="gui.superparent.delete_molecule"><code class="name flex">
+<span>def <span class="ident">delete_molecule</span></span>(<span>self, item)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>delete molecule</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def delete_molecule(self, item):
+    &#34;&#34;&#34;delete molecule&#34;&#34;&#34;
+    del self.contents[&#39;partners&#39;][f&#39;{item}&#39;]</code></pre>
+</details>
+</dd>
+<dt id="gui.superparent.delete_molecule_window"><code class="name flex">
+<span>def <span class="ident">delete_molecule_window</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>screen to delete molecules</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def delete_molecule_window(self):
+    &#34;&#34;&#34;screen to delete molecules&#34;&#34;&#34;
+    tk.Button(self.myFrame, text=&#34;Click me to go back to molecule selection&#34;, relief=&#34;groove&#34;,
+              command=lambda: [self.clear_window(), self.molecule_window()]) \
+        .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.9)
+    x = 0
+    for item in self.contents[&#34;partners&#34;]:
+        tk.Button(self.myFrame, text=&#34;Click me to delete molecule &#34; + item, relief=&#34;groove&#34;,
+                  command=lambda item=item: [self.delete_molecule(item), self.clear_window(),
+                                             self.molecule_window()]) \
+            .place(relheight=1 / len(self.contents[&#34;partners&#34;]), relwidth=0.5, relx=0, rely=0 + x)
+        x += 1 / len(self.contents[&#34;partners&#34;])</code></pre>
+</details>
+</dd>
+<dt id="gui.superparent.edit_active_residue"><code class="name flex">
+<span>def <span class="ident">edit_active_residue</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>change active residue</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def edit_active_residue(self, index):
+    &#34;&#34;&#34;change active residue&#34;&#34;&#34;
+    tk.Label(self.myFrame, text=&#34;Active res list, use the box below for editing&#34;) \
+        .place(relheight=0.1, relwidth=1, relx=0, rely=0)
+    e = tk.Entry(self.myFrame)
+    monkeyproof = str(self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;])[1:-1]
+    e.insert(tk.END, f&#34;{monkeyproof}&#34;)
+    e.place(relheight=0.1, relwidth=1, relx=0, rely=0.1)
+    tk.Button(self.myFrame, text=&#34;Save current input&#34;, relief=&#34;groove&#34;,
+              command=lambda: [self.save_active_residue_list(index, e.get())]) \
+        .place(relheight=0.1, relwidth=1, relx=0, rely=0.2)
+    tk.Button(self.myFrame, text=&#34;Click me to go back to molecule selection&#34;, relief=&#34;groove&#34;,
+              command=lambda: [self.clear_window(), self.molecule_window()]) \
+        .place(relheight=0.1, relwidth=1, relx=0, rely=0.9)</code></pre>
+</details>
+</dd>
+<dt id="gui.superparent.edit_passive_residue"><code class="name flex">
+<span>def <span class="ident">edit_passive_residue</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>change passive residue</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def edit_passive_residue(self, index):
+    &#34;&#34;&#34;change passive residue&#34;&#34;&#34;
+    tk.Label(self.myFrame,
+             text=&#34;Passive res list, use the box below for editing&#34;) \
+        .place(relheight=0.1, relwidth=1, relx=0, rely=0)
+    e = tk.Entry(self.myFrame)
+    monkeyproof = str(self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;])[1:-1]
+    e.insert(tk.END, f&#34;{monkeyproof}&#34;)
+    e.place(relheight=0.1, relwidth=1, relx=0, rely=0.1)
+    tk.Button(self.myFrame, text=&#34;Save current input&#34;, relief=&#34;groove&#34;,
+              command=lambda: [self.save_passive_residue_list(index, e.get())]) \
+        .place(relheight=0.1, relwidth=1, relx=0, rely=0.2)
+    tk.Button(self.myFrame, text=&#34;Click me to go back to molecule selection&#34;, relief=&#34;groove&#34;,
+              command=lambda: [self.clear_window(), self.molecule_window()]) \
+        .place(relheight=0.1, relwidth=1, relx=0, rely=0.9)</code></pre>
+</details>
+</dd>
+<dt id="gui.superparent.faq"><code class="name flex">
+<span>def <span class="ident">faq</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def faq(self):
+    self.mbox.showinfo(message=self.helpmessage())</code></pre>
+</details>
+</dd>
+<dt id="gui.superparent.helpmessage"><code class="name flex">
+<span>def <span class="ident">helpmessage</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def helpmessage(self):
+    return &#34;&#34;&#34;Greetings, Here is an explanation of how to use this program.\n\nClicking the button will open up a file browser, use this to navigate to where you downloaded your json file from the haddock website, and select that json file.\n\nThe gui will list all the molecules in the json on the left side, click on these picture for options on how to edit them.\n\nOn the right you will have various options\n\nYou can export/insert the table(s) to/from a seperate txt file\nYou can show this text again with the help text button\nYou can click to see a list of changes you have made incase you forgot which part of which molecule you edited\nYou can implement a new molecule, this will ask you for a pdb file. select your choice and a new molecule will be added\nyou can delete a molecule incase you uploaded a new molecule with the wrong file\nyou can save your edited json as a new file, just type in the name. The json file extension is added automaticly\nyou can switch to a different json file without needing to reboot the program, don&#39;t forget to save your previous json.\n\nWhen you click on a molecule you will be taken to the option screen of your selected choice.\n\nYou can save the pdb of the molecule as a seperate pdb file by clicking on the save pdb button.\nyou can switch the current pdb with a pdb on your hard drive by clicking the replace pdb button.\nYou can edit the active residue of the molecule by clicking the edit active residue button.\nIn the active residue editing screen, simply copy paste your active residue list in the white box.\nIt should look something like this: 50,23,23,12\nClick the save button when you are done.\nIn the passive residue editing screen, simply copy paste your passive residue list in the white box.\nIt should look something like this: 50,23,23,12\nClick the save button when you are done
+    
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="gui.superparent.load_json"><code class="name flex">
+<span>def <span class="ident">load_json</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>load json into memory</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_json(self):
+    &#34;&#34;&#34;load json into memory&#34;&#34;&#34;
+    file = tk.filedialog.askopenfile(&#34;r&#34;, filetypes=[(&#39;Json files&#39;, &#39;*.json&#39;)])
+    if not file:
+        self.mbox.showinfo(message=&#34;I need a json file&#34;)
+        if not hasattr(self, &#34;contents&#34;):
+            self.mbox.showinfo(message=&#34;Sorry I really need a json file to begin working,\
+            please run the program again and select one. exiting.&#34;)
+            exit()
+    else:
+        try:
+            self.name = os.path.basename(file.name)
+            self.contents = json.load(file)
+            file.close()
+
+        except JSONDecodeError:
+            self.mbox.showinfo(message=&#34;something is wrong with this file,\
+            I cannot load it. Maybe it&#39;s empty?&#34;)
+            self.load_json()</code></pre>
+</details>
+</dd>
+<dt id="gui.superparent.logging"><code class="name flex">
+<span>def <span class="ident">logging</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>overview of changes made</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def logging(self):
+    &#34;&#34;&#34;overview of changes made&#34;&#34;&#34;
+    tk.Button(self.myFrame, text=&#34;Click me to go back to molecule selection&#34;, relief=&#34;groove&#34;,
+              command=lambda: [self.clear_window(), self.molecule_window()]) \
+        .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.9)
+    tk.Button(self.myFrame, text=&#34;Click me to save this list to disk&#34;, relief=&#34;groove&#34;,
+              command=lambda: [self.clear_window(), self.save_logfile()]) \
+        .place(relheight=0.1, relwidth=0.5, relx=0, rely=0.9)
+    x = 0
+    for item in self.changes:
+        tk.Label(self.myFrame, text=f&#34;{item}&#34;).place(relheight=0.1, relwidth=1, relx=0, rely=0 + x)
+        x += 0.1</code></pre>
+</details>
+</dd>
+<dt id="gui.superparent.molecule_stats"><code class="name flex">
+<span>def <span class="ident">molecule_stats</span></span>(<span>self, item)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>list molecule options</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def molecule_stats(self, item):
+    &#34;&#34;&#34;list molecule options&#34;&#34;&#34;
+    tk.Label(self.myFrame, text=f&#34;PDB of molecule {item}&#34;).place(relheight=0.1, relwidth=0.5, relx=0, rely=0)
+    tk.Button(self.myFrame, text=&#34;save PDB as a seperate .pdb file&#34;, relief=&#34;groove&#34;,
+              command=lambda: [self.save_pdb(item)]) \
+        .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0)
+    tk.Button(self.myFrame, text=&#34;replace PDB&#34;, relief=&#34;groove&#34;,
+              command=lambda: [self.replace_pdb(item)]) \
+        .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.1)
+    tk.Label(self.myFrame, text=&#34;Active res&#34;).place(relheight=0.1, relwidth=0.5, relx=0, rely=0.2)
+    tk.Button(self.myFrame, text=&#34;edit Active res&#34;, relief=&#34;groove&#34;,
+              command=lambda: [self.clear_window(), self.edit_active_residue(item)]) \
+        .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.2)
+    tk.Label(self.myFrame, text=&#34;Passive res&#34;).place(relheight=0.1, relwidth=0.5, relx=0, rely=0.3)
+    tk.Button(self.myFrame, text=&#34;edit Passive res&#34;, relief=&#34;groove&#34;,
+              command=lambda: [self.clear_window(), self.edit_passive_residue(item)]) \
+        .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.3)
+    tk.Button(self.myFrame, text=&#34;Click me to go back to molecule selection&#34;, relief=&#34;groove&#34;,
+              command=lambda: [self.clear_window(), self.molecule_window()]) \
+        .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.9)</code></pre>
+</details>
+</dd>
+<dt id="gui.superparent.molecule_window"><code class="name flex">
+<span>def <span class="ident">molecule_window</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>display molecule buttons</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def molecule_window(self):
+    &#34;&#34;&#34;display molecule buttons&#34;&#34;&#34;
+    self.show_tables()
+    if len(self.contents[&#34;partners&#34;]) &gt; 5:
+        molecule_button_image = self.molecule_image_small
+    else:
+        molecule_button_image = self.molecule_image
+    x = 0
+    for item in self.contents[&#34;partners&#34;]:
+        tk.Button(self.myFrame, wraplength=130, text=&#34; Molecule &#34; + item + &#34; options&#34;,
+                  image=molecule_button_image, compound=tk.LEFT, justify=tk.RIGHT, relief=&#34;groove&#34;,
+                  command=lambda item=item: [self.clear_window(), self.molecule_stats(item)]) \
+            .place(relheight=1 / len(self.contents[&#34;partners&#34;]), relwidth=0.5, relx=0, rely=0 + x)
+        x += 1 / len(self.contents[&#34;partners&#34;])</code></pre>
+</details>
+</dd>
+<dt id="gui.superparent.new_molecule"><code class="name flex">
+<span>def <span class="ident">new_molecule</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>insert new molecule</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def new_molecule(self):
+    &#34;&#34;&#34;insert new molecule&#34;&#34;&#34;
+    pdb_file = tk.filedialog.askopenfile(&#34;r&#34;)
+    if not pdb_file:
+        return
+    if pdb_file.name.endswith(&#34;.pdb&#34;):
+        pdb_update = f&#34;New molecule in the {self.name} file has been added&#34;
+        molecule_list = self.contents[&#39;partners&#39;]
+
+        new_molecule = {&#39;activereslist&#39;: &#39;[]&#39;,
+                        &#39;auto_his&#39;: &#39;empty&#39;,
+                        &#39;auto_passive&#39;: &#39;empty&#39;,
+                        &#39;auto_passive_radius&#39;: &#39;empty&#39;,
+                        &#39;cg&#39;: &#39;empty&#39;,
+                        &#39;chain&#39;: &#39;empty&#39;,
+                        &#39;charged_cter&#39;: &#39;empty&#39;,
+                        &#39;charged_nter&#39;: &#39;empty&#39;,
+                        &#39;cyclic&#39;: &#39;empty&#39;,
+                        &#39;dna&#39;: &#39;empty&#39;,
+                        &#39;filter_buried_active&#39;: &#39;empty&#39;,
+                        &#39;filter_buried_active_cutoff&#39;: &#39;empty&#39;,
+                        &#39;fix_origin&#39;: &#39;empty&#39;,
+                        &#39;fully_flex&#39;: &#39;empty&#39;,
+                        &#39;his_patch&#39;: &#39;empty&#39;,
+                        &#39;link_file&#39;: &#39;empty&#39;,
+                        &#39;mode&#39;: &#39;empty&#39;,
+                        &#39;moleculetype&#39;: &#39;empty&#39;,
+                        &#39;par_file&#39;: &#39;empty&#39;,
+                        &#39;partnerlist&#39;: &#39;empty&#39;,
+                        &#39;passivereslist&#39;: &#39;[]&#39;,
+                        &#39;pdb_file&#39;: &#39;empty&#39;,
+                        &#39;pdb_list&#39;: &#39;empty&#39;,
+                        &#39;psf_file&#39;: &#39;empty&#39;,
+                        &#39;raw_pdb&#39;: f&#39;{pdb_file.read()}&#39;,
+                        &#39;root&#39;: &#39;empty&#39;,
+                        &#39;segid&#39;: &#39;empty&#39;,
+                        &#39;semi_flex&#39;: &#39;empty&#39;,
+                        &#39;shape&#39;: &#39;empty&#39;,
+                        &#39;top_file&#39;: &#39;empty&#39;,
+                        }
+
+        last_molecule = max([int(i) for i in molecule_list])
+        molecule_list[f&#34;{int(last_molecule) + 1}&#34;] = new_molecule
+        pdb_file.close()
+        self.changes.append(pdb_update)
+        self.mbox.showinfo(message=&#34;pdb succesfully inserted&#34;)
+
+    else:
+        return</code></pre>
+</details>
+</dd>
+<dt id="gui.superparent.replace_pdb"><code class="name flex">
+<span>def <span class="ident">replace_pdb</span></span>(<span>self, index)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>replace pdb in molecule</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def replace_pdb(self, index):
+    &#34;&#34;&#34;replace pdb in molecule&#34;&#34;&#34;
+    pdb_file = tk.filedialog.askopenfile(&#34;r&#34;)
+    if not pdb_file:
+        return
+    if pdb_file.name.endswith(&#34;.pdb&#34;):
+        pdb_update = f&#34;PDB of molecule {index} in the {self.name} file has been updated&#34;
+        self.changes.append(pdb_update)
+        self.contents[&#39;partners&#39;][index][&#39;raw_pdb&#39;] = pdb_file.read()
+        pdb_file.close()
+        self.mbox.showinfo(message=&#34;pdb succesfully replaced&#34;)
+    else:
+        return</code></pre>
+</details>
+</dd>
+<dt id="gui.superparent.replace_table"><code class="name flex">
+<span>def <span class="ident">replace_table</span></span>(<span>self, item)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>replace table from disk</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def replace_table(self, item):
+    &#34;&#34;&#34;replace table from disk&#34;&#34;&#34;
+    table_file = tk.filedialog.askopenfile(&#34;r&#34;)
+    if not table_file:
+        return
+    if table_file.name.endswith(&#34;.txt&#34;):
+        table_update = f&#34;table {item} in the {self.name} file has been updated&#34;
+        self.changes.append(table_update)
+        self.contents[item] = table_file.read()
+        table_file.close()
+        self.mbox.showinfo(message=&#34;table succesfully replaced&#34;)
+    else:
+        return</code></pre>
+</details>
+</dd>
+<dt id="gui.superparent.save_active_residue_list"><code class="name flex">
+<span>def <span class="ident">save_active_residue_list</span></span>(<span>self, index, entry)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>save active residue</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_active_residue_list(self, index, entry):
+    &#34;&#34;&#34;save active residue&#34;&#34;&#34;
+    residue_update = f&#34;Active residue list of molecule {index} in the {self.name} file has been updated&#34;
+    self.changes.append(residue_update)
+    if &#34;[&#34; and &#34;]&#34; not in entry:
+        entry = &#34;[&#34; + entry + &#34;]&#34;
+    self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;] = entry
+    self.mbox.showinfo(message=&#34;residue_list succesfully replaced&#34;)
+    self.clear_window()
+    self.molecule_window()</code></pre>
+</details>
+</dd>
+<dt id="gui.superparent.save_json"><code class="name flex">
+<span>def <span class="ident">save_json</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>save json file to disk</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_json(self):
+    &#34;&#34;&#34;save json file to disk&#34;&#34;&#34;
+    files = [(&#39;Json Document&#39;, &#39;*.json&#39;)]
+    save_json = tk.filedialog.asksaveasfile(filetypes=files, defaultextension=files)
+    if not save_json:
+        return
+    json.dump(self.contents, save_json, indent=4)
+    self.changes.append(f&#34;Json {self.name} saved to disk&#34;)
+    save_json.close()
+    json_update = f&#34;The json file {self.name} file has been updated&#34;
+    self.changes.append(json_update)
+    self.mbox.showinfo(message=&#34;Json succesfully saved&#34;)</code></pre>
+</details>
+</dd>
+<dt id="gui.superparent.save_logfile"><code class="name flex">
+<span>def <span class="ident">save_logfile</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>save logfile to disk</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_logfile(self):
+    &#34;&#34;&#34;save logfile to disk&#34;&#34;&#34;
+    files = [(&#39;Text Document&#39;, &#39;*.txt&#39;)]
+    log_file = tk.filedialog.asksaveasfile(filetypes=files, defaultextension=files)
+    if not log_file:
+        return
+    log_file.write(&#34;\n&#34;.join(self.changes))
+    log_file.close()
+    self.mbox.showinfo(message=&#34;Logfile succesfully saved to disk&#34;)</code></pre>
+</details>
+</dd>
+<dt id="gui.superparent.save_passive_residue_list"><code class="name flex">
+<span>def <span class="ident">save_passive_residue_list</span></span>(<span>self, index, entry)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>save passive residue</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_passive_residue_list(self, index, entry):
+    &#34;&#34;&#34;save passive residue&#34;&#34;&#34;
+    residue_update = f&#34;Passive residue list of molecule {index} in the {self.name} file has been updated&#34;
+    self.changes.append(residue_update)
+    if &#34;[&#34; and &#34;]&#34; not in entry:
+        entry = &#34;[&#34; + entry + &#34;]&#34;
+    self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;] = entry
+    self.mbox.showinfo(message=&#34;residue_list succesfully replaced&#34;)
+    self.clear_window()
+    self.molecule_window()</code></pre>
+</details>
+</dd>
+<dt id="gui.superparent.save_pdb"><code class="name flex">
+<span>def <span class="ident">save_pdb</span></span>(<span>self, item)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>save pdb to disk</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_pdb(self, item):
+    &#34;&#34;&#34;save pdb to disk&#34;&#34;&#34;
+    files = [(&#39;PDB Document&#39;, &#39;*.pdb&#39;)]
+    pdb_file = tk.filedialog.asksaveasfile(filetypes=files, defaultextension=files)
+    if not pdb_file:
+        return
+    pdb_file.write(self.contents[&#39;partners&#39;][item][&#39;raw_pdb&#39;])
+    self.changes.append(f&#34;PDB of molecule {item} in the {self.name} file has been updated&#34;)
+    pdb_file.close()
+    self.mbox.showinfo(message=&#34;pdb succesfully saved to disk&#34;)</code></pre>
+</details>
+</dd>
+<dt id="gui.superparent.save_table"><code class="name flex">
+<span>def <span class="ident">save_table</span></span>(<span>self, item)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>save table file to disk</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_table(self, item):
+    &#34;&#34;&#34;save table file to disk&#34;&#34;&#34;
+    files = [(&#39;Text Document&#39;, &#39;*.txt&#39;)]
+    save_table = tk.filedialog.asksaveasfile(filetypes=files, defaultextension=files)
+    if not save_table:
+        return
+    save_table.write(self.contents[item])
+    self.changes.append(f&#34;table file of {item} from {self.name} saved to disk&#34;)
+    save_table.close()
+    self.mbox.showinfo(message=&#34;Table succesfully saved to disk&#34;)</code></pre>
+</details>
+</dd>
+<dt id="gui.superparent.show_tables"><code class="name flex">
+<span>def <span class="ident">show_tables</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>display table buttons</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def show_tables(self):
+    &#34;&#34;&#34;display table buttons&#34;&#34;&#34;
+    x = 0
+    for item in self.contents:
+        if &#34;tblfile&#34; in item:
+            tk.Button(self.myFrame, text=f&#34;Click me for options on {item}&#34;, relief=&#34;groove&#34;,
+                      command=lambda item=item: [self.clear_window(), self.table_stats(item)]) \
+                .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0 + x)
+            x += 0.1
+
+    tk.Button(self.myFrame, text=&#34;Click me if you want help text&#34;, relief=&#34;groove&#34;,
+              command=lambda: [self.faq()]) \
+        .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.3)
+    tk.Button(self.myFrame, text=&#34;Click me to see a list of changes made&#34;, relief=&#34;groove&#34;,
+              command=lambda: [self.clear_window(), self.logging()]) \
+        .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.4)
+    tk.Button(self.myFrame, text=&#34;Click me to implement a new molecule&#34;, relief=&#34;groove&#34;,
+              command=lambda: [self.new_molecule(), self.clear_window(), self.molecule_window()]) \
+        .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.5)
+    tk.Button(self.myFrame, text=&#34;Click me to delete a molecule&#34;, relief=&#34;groove&#34;,
+              command=lambda: [self.clear_window(), self.delete_molecule_window()]) \
+        .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.6)
+    tk.Button(self.myFrame, text=&#34;Click me to save your json file&#34;, relief=&#34;groove&#34;,
+              command=lambda: [self.save_json()]) \
+        .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.7)
+    tk.Button(self.myFrame, text=&#34;Click me to load in a new json file&#34;, relief=&#34;groove&#34;,
+              command=lambda: [self.load_json(), self.clear_window(), self.molecule_window()]) \
+        .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.8)</code></pre>
+</details>
+</dd>
+<dt id="gui.superparent.table_stats"><code class="name flex">
+<span>def <span class="ident">table_stats</span></span>(<span>self, item)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>list table options</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def table_stats(self, item):
+    &#34;&#34;&#34;list table options&#34;&#34;&#34;
+    tk.Label(self.myFrame, text=f&#34;{item}&#34;).place(relheight=0.1, relwidth=0.5, relx=0, rely=0)
+    tk.Label(self.myFrame, text=f&#34;{item}&#34;).place(relheight=0.1, relwidth=0.5, relx=0, rely=0.1)
+    tk.Button(self.myFrame, text=&#34;save this file to disk&#34;, relief=&#34;groove&#34;,
+              command=lambda: [self.save_table(item)]) \
+        .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0)
+    tk.Button(self.myFrame, text=&#34;replace with another table&#34;, relief=&#34;groove&#34;,
+              command=lambda: [self.replace_table(item)]) \
+        .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.1)
+    tk.Button(self.myFrame, text=&#34;Click me to go back to molecule selection&#34;, relief=&#34;groove&#34;,
+              command=lambda: [self.clear_window(), self.molecule_window()]) \
+        .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.9)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="gui.superparent" href="#gui.superparent">superparent</a></code></h4>
+<ul class="">
+<li><code><a title="gui.superparent.clear_window" href="#gui.superparent.clear_window">clear_window</a></code></li>
+<li><code><a title="gui.superparent.delete_molecule" href="#gui.superparent.delete_molecule">delete_molecule</a></code></li>
+<li><code><a title="gui.superparent.delete_molecule_window" href="#gui.superparent.delete_molecule_window">delete_molecule_window</a></code></li>
+<li><code><a title="gui.superparent.edit_active_residue" href="#gui.superparent.edit_active_residue">edit_active_residue</a></code></li>
+<li><code><a title="gui.superparent.edit_passive_residue" href="#gui.superparent.edit_passive_residue">edit_passive_residue</a></code></li>
+<li><code><a title="gui.superparent.faq" href="#gui.superparent.faq">faq</a></code></li>
+<li><code><a title="gui.superparent.helpmessage" href="#gui.superparent.helpmessage">helpmessage</a></code></li>
+<li><code><a title="gui.superparent.load_json" href="#gui.superparent.load_json">load_json</a></code></li>
+<li><code><a title="gui.superparent.logging" href="#gui.superparent.logging">logging</a></code></li>
+<li><code><a title="gui.superparent.molecule_stats" href="#gui.superparent.molecule_stats">molecule_stats</a></code></li>
+<li><code><a title="gui.superparent.molecule_window" href="#gui.superparent.molecule_window">molecule_window</a></code></li>
+<li><code><a title="gui.superparent.new_molecule" href="#gui.superparent.new_molecule">new_molecule</a></code></li>
+<li><code><a title="gui.superparent.replace_pdb" href="#gui.superparent.replace_pdb">replace_pdb</a></code></li>
+<li><code><a title="gui.superparent.replace_table" href="#gui.superparent.replace_table">replace_table</a></code></li>
+<li><code><a title="gui.superparent.save_active_residue_list" href="#gui.superparent.save_active_residue_list">save_active_residue_list</a></code></li>
+<li><code><a title="gui.superparent.save_json" href="#gui.superparent.save_json">save_json</a></code></li>
+<li><code><a title="gui.superparent.save_logfile" href="#gui.superparent.save_logfile">save_logfile</a></code></li>
+<li><code><a title="gui.superparent.save_passive_residue_list" href="#gui.superparent.save_passive_residue_list">save_passive_residue_list</a></code></li>
+<li><code><a title="gui.superparent.save_pdb" href="#gui.superparent.save_pdb">save_pdb</a></code></li>
+<li><code><a title="gui.superparent.save_table" href="#gui.superparent.save_table">save_table</a></code></li>
+<li><code><a title="gui.superparent.show_tables" href="#gui.superparent.show_tables">show_tables</a></code></li>
+<li><code><a title="gui.superparent.table_stats" href="#gui.superparent.table_stats">table_stats</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>
