@@ -332,8 +332,6 @@ class superparent:
             x += 0.1
     def choose_molecule_type(self):
         self.moleculetypes = ['Protein', 'Ligand', 'Peptide', 'Glycan', 'Nucleic', 'Shape', 'Dummy']
-
-
         tk.Button(self.myFrame, text="Click me to go back to molecule selection", relief="groove",
                   command=lambda: [self.clear_window(), self.molecule_window()]) \
             .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.9)
