@@ -26,8 +26,39 @@ class superparent:
         self.new_data = []
         self.mbox = tk.messagebox
         tk.Button(self.myFrame, text="Click me and and then select a Json file", relief="groove",
-                  command=lambda: [self.load_json(), self.clear_window(), self.molecule_window(), self.faq()]) \
-            .place(relheight=0.2, relwidth=1)
+                  command=lambda: [self.load_json(), self.clear_window(), self.molecule_window()]) \
+            .place(relheight=0.2, relwidth=1, relx=0, rely=0)
+        tk.Button(self.myFrame, text="Click me for help", relief="groove",
+                  command=lambda: [self.faq()]) \
+            .place(relheight=0.2, relwidth=1, relx=0, rely=0.2)
+        self.faq()
+        self.protoshape = {"activereslist": '[]',
+                           "auto_passive": 'true',
+                           "auto_passive_radius": 6.5,
+                           "cg": 'false',
+                           "chain": "All",
+                           "charged_cter": 'false',
+                           "charged_nter": 'false',
+                           "cyclic": 'false',
+                           "dna": 'false',
+                           "fix_origin": 'false',
+                           "fully_flex": '{}',
+                           "his_patch": '{}',
+                           "link_file": "protein-allhdg5-4-noter.link",
+                           "moleculetype": "",
+                           "par_file": "protein-allhdg5-4.param",
+                           "partnerlist": '[]',
+                           "passivereslist": '[]',
+                           'raw_pdb': '',
+                           "pdb_file": "protein1.pdb",
+                           "psf_file": "protein1.psf",
+                           "root": "protein1",
+                           "semi_flex": '{}',
+                           "segid": "A",
+                           "shape": 'false',
+                           "top_file": "protein-allhdg5-4.top"
+
+                           }
 
     def load_json(self):
         """load json into memory"""
@@ -94,7 +125,7 @@ class superparent:
                   command=lambda: [self.clear_window(), self.logging()]) \
             .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.4)
         tk.Button(self.myFrame, text="Click me to implement a new molecule", relief="groove",
-                  command=lambda: [self.new_molecule(), self.clear_window(), self.molecule_window()]) \
+                  command=lambda: [self.clear_window(), self.choose_molecule_type()]) \
             .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.5)
         tk.Button(self.myFrame, text="Click me to delete a molecule", relief="groove",
                   command=lambda: [self.clear_window(), self.delete_molecule_window()]) \
@@ -285,6 +316,8 @@ class superparent:
         log_file.close()
         self.mbox.showinfo(message="Logfile succesfully saved to disk")
 
+
+
     def logging(self):
         """overview of changes made"""
         tk.Button(self.myFrame, text="Click me to go back to molecule selection", relief="groove",
@@ -297,53 +330,52 @@ class superparent:
         for item in self.changes:
             tk.Label(self.myFrame, text=f"{item}").place(relheight=0.1, relwidth=1, relx=0, rely=0 + x)
             x += 0.1
+    def choose_molecule_type(self):
+        self.moleculetypes = ['Protein', 'Ligand', 'Peptide', 'Glycan', 'Nucleic', 'Shape', 'Dummy']
+        tk.Button(self.myFrame, text="Click me to go back to molecule selection", relief="groove",
+                  command=lambda: [self.clear_window(), self.molecule_window()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.9)
 
-    def new_molecule(self):
-        """insert new molecule"""
+        for index, item in enumerate(self.moleculetypes):
+            tk.Button(self.myFrame, wraplength=150, text="Type of molecule: " + item,
+                      compound=tk.LEFT, justify=tk.RIGHT, relief="groove",
+                      command=lambda item=item: [self.clear_window(), self.new_molecule(item), self.molecule_window()]) \
+                .place(relheight=1 / len(self.moleculetypes), relwidth=0.5, relx=0, rely=0+(0.1*index))
+
+
+    def new_molecule(self, item):
+        """modify the template and insert new molecule"""
+
+        if item == "Shape":
+            print("Shape modified")
+            self.protoshape['top_file'] = "shape.top"
+            self.protoshape['link_file'] = "shape.link"
+            self.protoshape['par_file'] = "shape.param"
+
+        if item == "Nucleic":
+            self.protoshape['top_file'] = "dna-rna-allatom-hj-opls-1.3.top"
+            self.protoshape['link_file'] = "dna-rna-1.3.link"
+            self.protoshape['par_file'] = "dna-rna-allatom-hj-opls-1.3.param"
+            self.protoshape['dna'] = True
+
+        if item == "Protein-Nucleic":
+            self.protoshape['dna'] = True
+
         pdb_file = tk.filedialog.askopenfile("r")
         if not pdb_file:
             return
         if pdb_file.name.endswith(".pdb"):
             pdb_update = f"New molecule in the {self.name} file has been added"
             molecule_list = self.contents['partners']
-
-            new_molecule = {'activereslist': '[]',
-                            'auto_his': 'empty',
-                            'auto_passive': 'empty',
-                            'auto_passive_radius': 'empty',
-                            'cg': 'empty',
-                            'chain': 'empty',
-                            'charged_cter': 'empty',
-                            'charged_nter': 'empty',
-                            'cyclic': 'empty',
-                            'dna': 'empty',
-                            'filter_buried_active': 'empty',
-                            'filter_buried_active_cutoff': 'empty',
-                            'fix_origin': 'empty',
-                            'fully_flex': 'empty',
-                            'his_patch': 'empty',
-                            'link_file': 'empty',
-                            'mode': 'empty',
-                            'moleculetype': 'empty',
-                            'par_file': 'empty',
-                            'partnerlist': 'empty',
-                            'passivereslist': '[]',
-                            'pdb_file': 'empty',
-                            'pdb_list': 'empty',
-                            'psf_file': 'empty',
-                            'raw_pdb': f'{pdb_file.read()}',
-                            'root': 'empty',
-                            'segid': 'empty',
-                            'semi_flex': 'empty',
-                            'shape': 'empty',
-                            'top_file': 'empty',
-                            }
-
+            self.protoshape["moleculetype"] = item
+            self.protoshape["raw_pdb"] = pdb_file.read()
+            print(self.protoshape)
+            new_molecule = self.protoshape
             last_molecule = max([int(i) for i in molecule_list])
             molecule_list[f"{int(last_molecule) + 1}"] = new_molecule
             pdb_file.close()
             self.changes.append(pdb_update)
-            self.mbox.showinfo(message="pdb succesfully inserted")
+            self.mbox.showinfo(message=f"pdb succesfully inserted, new molecule created with name Molecule {last_molecule+1}")
 
         else:
             return
@@ -357,11 +389,15 @@ class superparent:
         tk.Button(self.myFrame, text="Click me to go back to molecule selection", relief="groove",
                   command=lambda: [self.clear_window(), self.molecule_window()]) \
             .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.9)
+        if len(self.contents["partners"]) > 5:
+            molecule_button_image = self.molecule_image_small
+        else:
+            molecule_button_image = self.molecule_image
         x = 0
         for item in self.contents["partners"]:
-            tk.Button(self.myFrame, text="Click me to delete molecule " + item, relief="groove",
-                      command=lambda item=item: [self.delete_molecule(item), self.clear_window(),
-                                                 self.molecule_window()]) \
+            tk.Button(self.myFrame, wraplength=130, text=" Molecule " + item + " options",
+                image=molecule_button_image, compound=tk.LEFT, justify=tk.RIGHT, relief="groove",
+                command=lambda item=item: [self.delete_molecule(item), self.clear_window(), self.molecule_window()]) \
                 .place(relheight=1 / len(self.contents["partners"]), relwidth=0.5, relx=0, rely=0 + x)
             x += 1 / len(self.contents["partners"])
 
