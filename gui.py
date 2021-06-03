@@ -124,8 +124,8 @@ class superparent:
         tk.Button(self.myFrame, text="Click me to see a list of changes made", relief="groove",
                   command=lambda: [self.clear_window(), self.logging()]) \
             .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.4)
-        tk.Button(self.myFrame, text="Click me to implement a new molecule", relief="groove",
-                  command=lambda: [self.clear_window(), self.choose_molecule_type()]) \
+        tk.Button(self.myFrame, text="Click me to swap a molecule", relief="groove",
+                  command=lambda: [self.clear_window(), self.select_molecule_1()]) \
             .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.5)
         tk.Button(self.myFrame, text="Click me to delete a molecule", relief="groove",
                   command=lambda: [self.clear_window(), self.delete_molecule_window()]) \
@@ -330,7 +330,84 @@ class superparent:
         for item in self.changes:
             tk.Label(self.myFrame, text=f"{item}").place(relheight=0.1, relwidth=1, relx=0, rely=0 + x)
             x += 0.1
+
+    def select_molecule_1(self):
+        """select molecule to be replaced"""
+        if len(self.contents["partners"]) > 5:
+            molecule_button_image = self.molecule_image_small
+        else:
+            molecule_button_image = self.molecule_image
+        x = 0
+        for molecule_1_index in self.contents["partners"]:
+            tk.Button(self.myFrame, wraplength=130, text=" Molecule " + molecule_1_index,
+                      image=molecule_button_image, compound=tk.LEFT, justify=tk.RIGHT, relief="groove",
+                      command=lambda molecule_1_index=molecule_1_index: [self.clear_window(), self.select_json_2(molecule_1_index)]) \
+                .place(relheight=1 / len(self.contents["partners"]), relwidth=0.5, relx=0, rely=0 + x)
+            x += 1 / len(self.contents["partners"])
+        tk.Button(self.myFrame, text="go back to molecule selection", relief="groove",
+                  command=lambda: [self.clear_window(), self.molecule_window()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.9)
+
+    def select_json_2(self, molecule_1_index):
+        """select file from which replace the molecule"""
+        old_json_name = self.name
+        old_json = self.contents
+        molecule_1 = self.contents["partners"][molecule_1_index]
+        tk.Button(self.myFrame, text="Click me and select a json file", relief="groove",
+                  command=lambda: [self.clear_window(), self.load_json(), self.select_molecule_2(molecule_1, old_json, molecule_1_index,old_json_name)]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.7)
+
+
+        tk.Label(self.myFrame, text= " Molecule to be replaced: " + molecule_1_index).place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.8)
+
+        tk.Button(self.myFrame, text="Click me to go back to molecule selection", relief="groove",
+                  command=lambda: [self.clear_window(), self.molecule_window()]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.9)
+
+    def select_molecule_2(self, molecule_1, old_json, molecule_1_index, old_json_name):
+        """select molecule from file 2"""
+        if len(self.contents["partners"]) > 5:
+            molecule_button_image = self.molecule_image_small
+        else:
+            molecule_button_image = self.molecule_image
+        x = 0
+        for molecule_2 in self.contents["partners"]:
+            tk.Button(self.myFrame, wraplength=130, text=" Molecule " + molecule_2,
+                      image=molecule_button_image, compound=tk.LEFT, justify=tk.RIGHT, relief="groove",
+                      command=lambda molecule_2=molecule_2: [self.clear_window(), self.confirm_replacement(molecule_1, molecule_2, old_json, molecule_1_index, old_json_name)]) \
+                .place(relheight=1 / len(self.contents["partners"]), relwidth=0.5, relx=0, rely=0 + x)
+            x += 1 / len(self.contents["partners"])
+    def confirm_replacement(self, molecule_1, molecule_2, old_json, molecule_1_index, old_json_name):
+        """confirm moleculeswitch or abort"""
+
+        tk.Label(self.myFrame, text="molecule to be replaced: molecule " + molecule_1_index + " from file " + old_json_name).place(relheight=0.2, relwidth=1, relx=0, rely=0)
+        tk.Label(self.myFrame, text="molecule to be inserted: molecule " + molecule_2 + " from file " + self.name).place(relheight=0.2, relwidth=1, relx=0, rely=0.2)
+
+
+        tk.Button(self.myFrame, text="Replace", relief="groove",
+                  command=lambda: [self.clear_window(), self.confirm_swap(molecule_1, molecule_2, old_json, molecule_1_index, old_json_name)]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0, rely=0.9)
+
+        tk.Button(self.myFrame, text="Abort", relief="groove",
+                  command=lambda: [self.clear_window(), self.abort_swap(old_json, old_json_name)]) \
+            .place(relheight=0.1, relwidth=0.5, relx=0.5, rely=0.9)
+    def confirm_swap(self, molecule_1, molecule_2, old_json, molecule_1_index, old_json_name):
+        """replace and return to old json"""
+        old_json["partners"][molecule_1_index] = self.contents["partners"][molecule_2]
+
+        self.name = old_json_name
+        self.contents = old_json
+        self.molecule_window()
+
+
+    def abort_swap(self, old_json, old_json_name):
+        """abort and return to old json"""
+        self.name = old_json_name
+        self.contents = old_json
+        self.molecule_window()
+
     def choose_molecule_type(self):
+        """select from list which type you want"""
         self.moleculetypes = ['Protein', 'Ligand', 'Peptide', 'Glycan', 'Nucleic', 'Shape', 'Dummy']
         tk.Button(self.myFrame, text="Click me to go back to molecule selection", relief="groove",
                   command=lambda: [self.clear_window(), self.molecule_window()]) \
@@ -356,10 +433,10 @@ class superparent:
             self.protoshape['top_file'] = "dna-rna-allatom-hj-opls-1.3.top"
             self.protoshape['link_file'] = "dna-rna-1.3.link"
             self.protoshape['par_file'] = "dna-rna-allatom-hj-opls-1.3.param"
-            self.protoshape['dna'] = True
+            self.protoshape['dna'] = 'True'
 
         if item == "Protein-Nucleic":
-            self.protoshape['dna'] = True
+            self.protoshape['dna'] = 'True'
 
         pdb_file = tk.filedialog.askopenfile("r")
         if not pdb_file:
