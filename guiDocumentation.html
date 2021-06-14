@@ -258,11 +258,13 @@ class superparent:
 
     def confirm_actpasrescheck(self, message, message2, index):
         answer = tk.messagebox.askyesno(title=&#34;conformation box&#34;,
-                               message=f&#34;Are you sure you wish to use -&gt;{message, message2}&lt;- as your act/passive?&#34;)
+                               message=f&#34;Are you sure you wish to change -&gt;{message, message2}&lt;- to empty?&#34;)
         if answer:
             #self.contents[&#39;partners&#39;][index][&#39;moleculetype&#39;] = text
-            self.clear_window()
             self.replace_pdb(index)
+            self.clear_window()
+            self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;] = &#34;[]&#34;
+            self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;] = &#34;[]&#34;
             self.molecule_window()
         else:
             return
@@ -802,11 +804,13 @@ if __name__ == &#34;__main__&#34;:
 
     def confirm_actpasrescheck(self, message, message2, index):
         answer = tk.messagebox.askyesno(title=&#34;conformation box&#34;,
-                               message=f&#34;Are you sure you wish to use -&gt;{message, message2}&lt;- as your act/passive?&#34;)
+                               message=f&#34;Are you sure you wish to change -&gt;{message, message2}&lt;- to empty?&#34;)
         if answer:
             #self.contents[&#39;partners&#39;][index][&#39;moleculetype&#39;] = text
-            self.clear_window()
             self.replace_pdb(index)
+            self.clear_window()
+            self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;] = &#34;[]&#34;
+            self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;] = &#34;[]&#34;
             self.molecule_window()
         else:
             return
@@ -984,11 +988,13 @@ if __name__ == &#34;__main__&#34;:
 </summary>
 <pre><code class="python">def confirm_actpasrescheck(self, message, message2, index):
     answer = tk.messagebox.askyesno(title=&#34;conformation box&#34;,
-                           message=f&#34;Are you sure you wish to use -&gt;{message, message2}&lt;- as your act/passive?&#34;)
+                           message=f&#34;Are you sure you wish to change -&gt;{message, message2}&lt;- to empty?&#34;)
     if answer:
         #self.contents[&#39;partners&#39;][index][&#39;moleculetype&#39;] = text
-        self.clear_window()
         self.replace_pdb(index)
+        self.clear_window()
+        self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;] = &#34;[]&#34;
+        self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;] = &#34;[]&#34;
         self.molecule_window()
     else:
         return</code></pre>
