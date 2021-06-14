@@ -230,11 +230,13 @@ class superparent:
 
     def confirm_actpasrescheck(self, message, message2, index):
         answer = tk.messagebox.askyesno(title="conformation box",
-                               message=f"Are you sure you wish to use ->{message, message2}<- as your act/passive?")
+                               message=f"Are you sure you wish to change ->{message, message2}<- to empty?")
         if answer:
             #self.contents['partners'][index]['moleculetype'] = text
-            self.clear_window()
             self.replace_pdb(index)
+            self.clear_window()
+            self.contents['partners'][index]['activereslist'] = "[]"
+            self.contents['partners'][index]['passivereslist'] = "[]"
             self.molecule_window()
         else:
             return
