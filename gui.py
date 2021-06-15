@@ -224,6 +224,15 @@ class superparent:
                   command=lambda: [self.confirm_actpasrescheck(message, message2, index)]) \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0.30)
 
+        li_1_output = any(isinstance(i, list) for i in self.contents['partners'][index]['activereslist'])
+        li_2_output = any(isinstance(i, list) for i in self.contents['partners'][index]['passivereslist'])
+        if li_1_output or li_2_output:
+            messagebox.showinfo(title="error",
+                                message="sorry nested lists in the passive/active reslist are not supported, please edit this. \ntip: Click the edit passive/active res button below Replace Pdb and just select the text and press Delete\nPress save current input")
+            self.clear_window()
+            self.molecule_window()
+
+
     def confirm_actpasrescheck(self, message, message2, index):
         """confirm selection of residue"""
         answer = tk.messagebox.askyesno(title="conformation box",
