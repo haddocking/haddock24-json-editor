@@ -223,26 +223,6 @@ class superparent:
         tk.Button(self.myFrame, text="Run check on active/passive residuelists and continue to your Selection of your PDB file", relief="groove",
                   command=lambda: [self.confirm_actpasrescheck(message, message2, index)]) \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0.30)
-        for item in self.contents['partners'][index]['activereslist']:
-            print(item)
-        countbracketsact = 0
-        for item in self.contents['partners'][index]['activereslist']:
-            if countbracketsact > 1:
-                messagebox.showinfo(title="error", message="sorry nested lists in the activereslist are not supported, please edit this. \ntip: Click the edit active res button below Replace Pdb and just select the text and press Delete\nPress save current input")
-                self.clear_window()
-                self.molecule_window()
-                break
-            if "[" in str(item):
-                countbracketsact += 1
-        countbracketspas = 0
-        for item in self.contents['partners'][index]['passivereslist']:
-            if countbracketspas > 1:
-                messagebox.showinfo(title="error", message="sorry nested lists in the passivereslist are not supported, please edit this. \ntip: Click the edit passive res button below Replace Pdb and just select the text and press Delete\nPress save current input")
-                self.clear_window()
-                self.molecule_window()
-                break
-            if "[" in str(item):
-                countbracketspas += 1
 
     def confirm_actpasrescheck(self, message, message2, index):
         """confirm selection of residue"""
