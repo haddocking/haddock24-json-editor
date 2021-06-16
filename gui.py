@@ -198,65 +198,19 @@ class superparent:
                                message=f"Are you sure you wish to use ->{text}<- as your moleculetype?")
         if answer:
             self.clear_window()
-            self.replace_pdb_options_actpasrescheck(index)
+            self.confirm_actpasrescheck(index)
         else:
             return
 
-    def replace_pdb_options_actpasrescheck(self, index):
-        """check to ensure the active and passive reslists meet criterea"""
-        tk.Label(self.myFrame,
-                 text="Please check the Activereslist in the entryfield below. \nIf the Activereslist has nested lists it will not be supported") \
-            .place(relheight=0.1, relwidth=1, relx=0, rely=0)
-        e = tk.Entry(self.myFrame)
-        message = self.contents['partners'][index]['activereslist']
-        e.insert(tk.END, f"{message}")
-        e.place(relheight=0.05, relwidth=1, relx=0, rely=0.1)
-
-        tk.Label(self.myFrame,
-                 text="Please check the Passivereslist in the entryfield below. \nIf the Passivereslist has nested lists it will not be supported") \
-            .place(relheight=0.1, relwidth=1, relx=0, rely=0.15)
-        d = tk.Entry(self.myFrame)
-        message2 = self.contents['partners'][index]['passivereslist']
-        d.insert(tk.END, f"{message2}")
-        d.place(relheight=0.05, relwidth=1, relx=0, rely=0.25)
-
-        tk.Button(self.myFrame, text="Run check on active/passive residuelists and continue to your Selection of your PDB file", relief="groove",
-                  command=lambda: [self.actpas(e.get(), d.get(), index)]) \
-            .place(relheight=0.1, relwidth=1, relx=0, rely=0.30)
-
-
-    def actpas(self, message, message2, index):
-        try:
-            json.loads(message)
-        except:
-            messagebox.showinfo(title="manual intervention required",
-                                message="cannot load activeres, check format. needs to be ['1', '2'] or ['1'. '2'], ['1', '2'] \nMaybe you misplaced a bracket?")
-            return
-        try:
-            json.loads(message2)
-        except:
-            messagebox.showinfo(title="manual intervention required",
-                                message="cannot load passiveres, check format. needs to be ['1', '2'] or ['1'. '2'], ['1', '2'] \nMaybe you misplaced a bracket?")
-            return
-        li_1_output = any(isinstance(i, list) for i in json.loads(message))
-        li_2_output = any(isinstance(i, list) for i in json.loads(message2))
-
-        if li_1_output or li_2_output:
-            messagebox.showinfo(title="manual intervention required",
-                                message="sorry nested lists --> [[1.2],[1,2]] <-- are not allowed\nThe required format is either --> [1,2] <-- or --> [1,2], [1,2] <--\nPlease edit this using the input boxes provided and press the button again\n\nIf you don't know what to do. Use left bracket right bracket, format: --> [ ] <-- as input. it will make that list empty allowing you to continue")
-            return
-        else:
-            self.confirm_actpasrescheck(message, message2, index)
-
-    def confirm_actpasrescheck(self, message, message2, index):
+    def confirm_actpasrescheck(self, index):
         """confirm selection of residue"""
         answer = tk.messagebox.askyesno(title="conformation box",
                                message=f"Are you sure you wish to proceed")
         if answer:
             self.replace_pdb(index)
             self.clear_window()
-            self.contents['partners'][index]['activereslist'] = message
-            self.contents['partners'][index]['passivereslist'] = message2
+            #self.contents['partners'][index]['activereslist'] = message
+            #self.contents['partners'][index]['passivereslist'] = message2
             self.molecule_window()
         else:
             return
