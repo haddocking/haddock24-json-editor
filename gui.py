@@ -229,21 +229,21 @@ class superparent:
         try:
             json.loads(message)
         except:
-            messagebox.showinfo(title="error",
+            messagebox.showinfo(title="manual intervention required",
                                 message="cannot load activeres, check format. needs to be ['1', '2'] or ['1'. '2'], ['1', '2'] \nMaybe you misplaced a bracket?")
             return
         try:
             json.loads(message2)
         except:
-            messagebox.showinfo(title="error",
+            messagebox.showinfo(title="manual intervention required",
                                 message="cannot load passiveres, check format. needs to be ['1', '2'] or ['1'. '2'], ['1', '2'] \nMaybe you misplaced a bracket?")
             return
         li_1_output = any(isinstance(i, list) for i in json.loads(message))
         li_2_output = any(isinstance(i, list) for i in json.loads(message2))
 
         if li_1_output or li_2_output:
-            messagebox.showinfo(title="error",
-                                message="sorry nested lists in the passive/active reslist are not supported, please edit this. \ntip: Click the edit passive/active res button below Replace Pdb and just select the text and press Delete\nPress save current input")
+            messagebox.showinfo(title="manual intervention required",
+                                message="sorry nested lists --> [[1.2],[1,2]] <-- are not allowed\nThe required format is either --> [1,2] <-- or --> [1,2], [1,2] <--\nPlease edit this using the input boxes provided and press the button again\n\nIf you don't know what to do. Use left bracket right bracket, format: --> [ ] <-- as input. it will make that list empty allowing you to continue")
             return
         else:
             self.confirm_actpasrescheck(message, message2, index)
