@@ -236,7 +236,7 @@ class superparent:
                  text=&#34;Please check the Activereslist in the entryfield below. \nIf the Activereslist has nested lists it will not be supported&#34;) \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0)
         e = tk.Entry(self.myFrame)
-        message = str(self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;])
+        message = self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;]
         e.insert(tk.END, f&#34;{message}&#34;)
         e.place(relheight=0.05, relwidth=1, relx=0, rely=0.1)
 
@@ -244,33 +244,25 @@ class superparent:
                  text=&#34;Please check the Passivereslist in the entryfield below. \nIf the Passivereslist has nested lists it will not be supported&#34;) \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0.15)
         d = tk.Entry(self.myFrame)
-        message2 = str(self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;])
+        message2 = self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;]
         d.insert(tk.END, f&#34;{message2}&#34;)
         d.place(relheight=0.05, relwidth=1, relx=0, rely=0.25)
 
         tk.Button(self.myFrame, text=&#34;Run check on active/passive residuelists and continue to your Selection of your PDB file&#34;, relief=&#34;groove&#34;,
-                  command=lambda: [self.confirm_actpasrescheck(message, message2, index)]) \
+                  command=lambda: [self.actpas(json.loads(e.get()), json.loads(e.get()), index)]) \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0.30)
-        for item in self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;]:
-            print(item)
-        countbracketsact = 0
-        for item in self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;]:
-            if countbracketsact &gt; 1:
-                messagebox.showinfo(title=&#34;error&#34;, message=&#34;sorry nested lists in the activereslist are not supported, please edit this. \ntip: Click the edit active res button below Replace Pdb and just select the text and press Delete\nPress save current input&#34;)
-                self.clear_window()
-                self.molecule_window()
-                break
-            if &#34;[&#34; in str(item):
-                countbracketsact += 1
-        countbracketspas = 0
-        for item in self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;]:
-            if countbracketspas &gt; 1:
-                messagebox.showinfo(title=&#34;error&#34;, message=&#34;sorry nested lists in the passivereslist are not supported, please edit this. \ntip: Click the edit passive res button below Replace Pdb and just select the text and press Delete\nPress save current input&#34;)
-                self.clear_window()
-                self.molecule_window()
-                break
-            if &#34;[&#34; in str(item):
-                countbracketspas += 1
+
+    def actpas(self, message, message2, index):
+
+        li_1_output = any(isinstance(i, list) for i in message)
+        li_2_output = any(isinstance(i, list) for i in message2)
+
+        if li_1_output or li_2_output:
+            messagebox.showinfo(title=&#34;error&#34;,
+                                message=&#34;sorry nested lists in the passive/active reslist are not supported, please edit this. \ntip: Click the edit passive/active res button below Replace Pdb and just select the text and press Delete\nPress save current input&#34;)
+            return
+        else:
+            self.confirm_actpasrescheck(message, message2, index)
 
     def confirm_actpasrescheck(self, message, message2, index):
         &#34;&#34;&#34;confirm selection of residue&#34;&#34;&#34;
@@ -634,7 +626,7 @@ if __name__ == &#34;__main__&#34;:
                  text=&#34;Please check the Activereslist in the entryfield below. \nIf the Activereslist has nested lists it will not be supported&#34;) \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0)
         e = tk.Entry(self.myFrame)
-        message = str(self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;])
+        message = self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;]
         e.insert(tk.END, f&#34;{message}&#34;)
         e.place(relheight=0.05, relwidth=1, relx=0, rely=0.1)
 
@@ -642,33 +634,25 @@ if __name__ == &#34;__main__&#34;:
                  text=&#34;Please check the Passivereslist in the entryfield below. \nIf the Passivereslist has nested lists it will not be supported&#34;) \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0.15)
         d = tk.Entry(self.myFrame)
-        message2 = str(self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;])
+        message2 = self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;]
         d.insert(tk.END, f&#34;{message2}&#34;)
         d.place(relheight=0.05, relwidth=1, relx=0, rely=0.25)
 
         tk.Button(self.myFrame, text=&#34;Run check on active/passive residuelists and continue to your Selection of your PDB file&#34;, relief=&#34;groove&#34;,
-                  command=lambda: [self.confirm_actpasrescheck(message, message2, index)]) \
+                  command=lambda: [self.actpas(json.loads(e.get()), json.loads(e.get()), index)]) \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0.30)
-        for item in self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;]:
-            print(item)
-        countbracketsact = 0
-        for item in self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;]:
-            if countbracketsact &gt; 1:
-                messagebox.showinfo(title=&#34;error&#34;, message=&#34;sorry nested lists in the activereslist are not supported, please edit this. \ntip: Click the edit active res button below Replace Pdb and just select the text and press Delete\nPress save current input&#34;)
-                self.clear_window()
-                self.molecule_window()
-                break
-            if &#34;[&#34; in str(item):
-                countbracketsact += 1
-        countbracketspas = 0
-        for item in self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;]:
-            if countbracketspas &gt; 1:
-                messagebox.showinfo(title=&#34;error&#34;, message=&#34;sorry nested lists in the passivereslist are not supported, please edit this. \ntip: Click the edit passive res button below Replace Pdb and just select the text and press Delete\nPress save current input&#34;)
-                self.clear_window()
-                self.molecule_window()
-                break
-            if &#34;[&#34; in str(item):
-                countbracketspas += 1
+
+    def actpas(self, message, message2, index):
+
+        li_1_output = any(isinstance(i, list) for i in message)
+        li_2_output = any(isinstance(i, list) for i in message2)
+
+        if li_1_output or li_2_output:
+            messagebox.showinfo(title=&#34;error&#34;,
+                                message=&#34;sorry nested lists in the passive/active reslist are not supported, please edit this. \ntip: Click the edit passive/active res button below Replace Pdb and just select the text and press Delete\nPress save current input&#34;)
+            return
+        else:
+            self.confirm_actpasrescheck(message, message2, index)
 
     def confirm_actpasrescheck(self, message, message2, index):
         &#34;&#34;&#34;confirm selection of residue&#34;&#34;&#34;
@@ -812,6 +796,28 @@ if __name__ == &#34;__main__&#34;:
 </details>
 <h3>Methods</h3>
 <dl>
+<dt id="gui.superparent.actpas"><code class="name flex">
+<span>def <span class="ident">actpas</span></span>(<span>self, message, message2, index)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def actpas(self, message, message2, index):
+
+    li_1_output = any(isinstance(i, list) for i in message)
+    li_2_output = any(isinstance(i, list) for i in message2)
+
+    if li_1_output or li_2_output:
+        messagebox.showinfo(title=&#34;error&#34;,
+                            message=&#34;sorry nested lists in the passive/active reslist are not supported, please edit this. \ntip: Click the edit passive/active res button below Replace Pdb and just select the text and press Delete\nPress save current input&#34;)
+        return
+    else:
+        self.confirm_actpasrescheck(message, message2, index)</code></pre>
+</details>
+</dd>
 <dt id="gui.superparent.clear_window"><code class="name flex">
 <span>def <span class="ident">clear_window</span></span>(<span>self)</span>
 </code></dt>
@@ -1095,7 +1101,7 @@ if __name__ == &#34;__main__&#34;:
              text=&#34;Please check the Activereslist in the entryfield below. \nIf the Activereslist has nested lists it will not be supported&#34;) \
         .place(relheight=0.1, relwidth=1, relx=0, rely=0)
     e = tk.Entry(self.myFrame)
-    message = str(self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;])
+    message = self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;]
     e.insert(tk.END, f&#34;{message}&#34;)
     e.place(relheight=0.05, relwidth=1, relx=0, rely=0.1)
 
@@ -1103,33 +1109,13 @@ if __name__ == &#34;__main__&#34;:
              text=&#34;Please check the Passivereslist in the entryfield below. \nIf the Passivereslist has nested lists it will not be supported&#34;) \
         .place(relheight=0.1, relwidth=1, relx=0, rely=0.15)
     d = tk.Entry(self.myFrame)
-    message2 = str(self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;])
+    message2 = self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;]
     d.insert(tk.END, f&#34;{message2}&#34;)
     d.place(relheight=0.05, relwidth=1, relx=0, rely=0.25)
 
     tk.Button(self.myFrame, text=&#34;Run check on active/passive residuelists and continue to your Selection of your PDB file&#34;, relief=&#34;groove&#34;,
-              command=lambda: [self.confirm_actpasrescheck(message, message2, index)]) \
-        .place(relheight=0.1, relwidth=1, relx=0, rely=0.30)
-    for item in self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;]:
-        print(item)
-    countbracketsact = 0
-    for item in self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;]:
-        if countbracketsact &gt; 1:
-            messagebox.showinfo(title=&#34;error&#34;, message=&#34;sorry nested lists in the activereslist are not supported, please edit this. \ntip: Click the edit active res button below Replace Pdb and just select the text and press Delete\nPress save current input&#34;)
-            self.clear_window()
-            self.molecule_window()
-            break
-        if &#34;[&#34; in str(item):
-            countbracketsact += 1
-    countbracketspas = 0
-    for item in self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;]:
-        if countbracketspas &gt; 1:
-            messagebox.showinfo(title=&#34;error&#34;, message=&#34;sorry nested lists in the passivereslist are not supported, please edit this. \ntip: Click the edit passive res button below Replace Pdb and just select the text and press Delete\nPress save current input&#34;)
-            self.clear_window()
-            self.molecule_window()
-            break
-        if &#34;[&#34; in str(item):
-            countbracketspas += 1</code></pre>
+              command=lambda: [self.actpas(json.loads(e.get()), json.loads(e.get()), index)]) \
+        .place(relheight=0.1, relwidth=1, relx=0, rely=0.30)</code></pre>
 </details>
 </dd>
 <dt id="gui.superparent.replace_pdb_options_molecule_name"><code class="name flex">
@@ -1379,6 +1365,7 @@ if __name__ == &#34;__main__&#34;:
 <li>
 <h4><code><a title="gui.superparent" href="#gui.superparent">superparent</a></code></h4>
 <ul class="">
+<li><code><a title="gui.superparent.actpas" href="#gui.superparent.actpas">actpas</a></code></li>
 <li><code><a title="gui.superparent.clear_window" href="#gui.superparent.clear_window">clear_window</a></code></li>
 <li><code><a title="gui.superparent.confirm_actpasrescheck" href="#gui.superparent.confirm_actpasrescheck">confirm_actpasrescheck</a></code></li>
 <li><code><a title="gui.superparent.confirm_moleculename" href="#gui.superparent.confirm_moleculename">confirm_moleculename</a></code></li>

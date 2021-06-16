@@ -208,7 +208,7 @@ class superparent:
                  text="Please check the Activereslist in the entryfield below. \nIf the Activereslist has nested lists it will not be supported") \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0)
         e = tk.Entry(self.myFrame)
-        message = str(self.contents['partners'][index]['activereslist'])
+        message = self.contents['partners'][index]['activereslist']
         e.insert(tk.END, f"{message}")
         e.place(relheight=0.05, relwidth=1, relx=0, rely=0.1)
 
@@ -216,22 +216,25 @@ class superparent:
                  text="Please check the Passivereslist in the entryfield below. \nIf the Passivereslist has nested lists it will not be supported") \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0.15)
         d = tk.Entry(self.myFrame)
-        message2 = str(self.contents['partners'][index]['passivereslist'])
+        message2 = self.contents['partners'][index]['passivereslist']
         d.insert(tk.END, f"{message2}")
         d.place(relheight=0.05, relwidth=1, relx=0, rely=0.25)
 
         tk.Button(self.myFrame, text="Run check on active/passive residuelists and continue to your Selection of your PDB file", relief="groove",
-                  command=lambda: [self.confirm_actpasrescheck(message, message2, index)]) \
+                  command=lambda: [self.actpas(json.loads(e.get()), json.loads(e.get()), index)]) \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0.30)
 
-        li_1_output = any(isinstance(i, list) for i in self.contents['partners'][index]['activereslist'])
-        li_2_output = any(isinstance(i, list) for i in self.contents['partners'][index]['passivereslist'])
+    def actpas(self, message, message2, index):
+
+        li_1_output = any(isinstance(i, list) for i in message)
+        li_2_output = any(isinstance(i, list) for i in message2)
+
         if li_1_output or li_2_output:
             messagebox.showinfo(title="error",
                                 message="sorry nested lists in the passive/active reslist are not supported, please edit this. \ntip: Click the edit passive/active res button below Replace Pdb and just select the text and press Delete\nPress save current input")
-            self.clear_window()
-            self.molecule_window()
-
+            return
+        else:
+            self.confirm_actpasrescheck(message, message2, index)
 
     def confirm_actpasrescheck(self, message, message2, index):
         """confirm selection of residue"""
