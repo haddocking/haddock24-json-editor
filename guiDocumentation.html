@@ -249,13 +249,25 @@ class superparent:
         d.place(relheight=0.05, relwidth=1, relx=0, rely=0.25)
 
         tk.Button(self.myFrame, text=&#34;Run check on active/passive residuelists and continue to your Selection of your PDB file&#34;, relief=&#34;groove&#34;,
-                  command=lambda: [self.actpas(json.loads(e.get()), json.loads(d.get()), index)]) \
+                  command=lambda: [self.actpas(e.get(), d.get(), index)]) \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0.30)
 
-    def actpas(self, message, message2, index):
 
-        li_1_output = any(isinstance(i, list) for i in message)
-        li_2_output = any(isinstance(i, list) for i in message2)
+    def actpas(self, message, message2, index):
+        try:
+            json.loads(message)
+        except:
+            messagebox.showinfo(title=&#34;error&#34;,
+                                message=&#34;cannot load activeres, check format. needs to be [&#39;1&#39;, &#39;2&#39;] or [&#39;1&#39;. &#39;2&#39;], [&#39;1&#39;, &#39;2&#39;] \nMaybe you misplaced a bracket?&#34;)
+            return
+        try:
+            json.loads(message2)
+        except:
+            messagebox.showinfo(title=&#34;error&#34;,
+                                message=&#34;cannot load passiveres, check format. needs to be [&#39;1&#39;, &#39;2&#39;] or [&#39;1&#39;. &#39;2&#39;], [&#39;1&#39;, &#39;2&#39;] \nMaybe you misplaced a bracket?&#34;)
+            return
+        li_1_output = any(isinstance(i, list) for i in json.loads(message))
+        li_2_output = any(isinstance(i, list) for i in json.loads(message2))
 
         if li_1_output or li_2_output:
             messagebox.showinfo(title=&#34;error&#34;,
@@ -639,13 +651,25 @@ if __name__ == &#34;__main__&#34;:
         d.place(relheight=0.05, relwidth=1, relx=0, rely=0.25)
 
         tk.Button(self.myFrame, text=&#34;Run check on active/passive residuelists and continue to your Selection of your PDB file&#34;, relief=&#34;groove&#34;,
-                  command=lambda: [self.actpas(json.loads(e.get()), json.loads(d.get()), index)]) \
+                  command=lambda: [self.actpas(e.get(), d.get(), index)]) \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0.30)
 
-    def actpas(self, message, message2, index):
 
-        li_1_output = any(isinstance(i, list) for i in message)
-        li_2_output = any(isinstance(i, list) for i in message2)
+    def actpas(self, message, message2, index):
+        try:
+            json.loads(message)
+        except:
+            messagebox.showinfo(title=&#34;error&#34;,
+                                message=&#34;cannot load activeres, check format. needs to be [&#39;1&#39;, &#39;2&#39;] or [&#39;1&#39;. &#39;2&#39;], [&#39;1&#39;, &#39;2&#39;] \nMaybe you misplaced a bracket?&#34;)
+            return
+        try:
+            json.loads(message2)
+        except:
+            messagebox.showinfo(title=&#34;error&#34;,
+                                message=&#34;cannot load passiveres, check format. needs to be [&#39;1&#39;, &#39;2&#39;] or [&#39;1&#39;. &#39;2&#39;], [&#39;1&#39;, &#39;2&#39;] \nMaybe you misplaced a bracket?&#34;)
+            return
+        li_1_output = any(isinstance(i, list) for i in json.loads(message))
+        li_2_output = any(isinstance(i, list) for i in json.loads(message2))
 
         if li_1_output or li_2_output:
             messagebox.showinfo(title=&#34;error&#34;,
@@ -806,9 +830,20 @@ if __name__ == &#34;__main__&#34;:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def actpas(self, message, message2, index):
-
-    li_1_output = any(isinstance(i, list) for i in message)
-    li_2_output = any(isinstance(i, list) for i in message2)
+    try:
+        json.loads(message)
+    except:
+        messagebox.showinfo(title=&#34;error&#34;,
+                            message=&#34;cannot load activeres, check format. needs to be [&#39;1&#39;, &#39;2&#39;] or [&#39;1&#39;. &#39;2&#39;], [&#39;1&#39;, &#39;2&#39;] \nMaybe you misplaced a bracket?&#34;)
+        return
+    try:
+        json.loads(message2)
+    except:
+        messagebox.showinfo(title=&#34;error&#34;,
+                            message=&#34;cannot load passiveres, check format. needs to be [&#39;1&#39;, &#39;2&#39;] or [&#39;1&#39;. &#39;2&#39;], [&#39;1&#39;, &#39;2&#39;] \nMaybe you misplaced a bracket?&#34;)
+        return
+    li_1_output = any(isinstance(i, list) for i in json.loads(message))
+    li_2_output = any(isinstance(i, list) for i in json.loads(message2))
 
     if li_1_output or li_2_output:
         messagebox.showinfo(title=&#34;error&#34;,
@@ -1114,7 +1149,7 @@ if __name__ == &#34;__main__&#34;:
     d.place(relheight=0.05, relwidth=1, relx=0, rely=0.25)
 
     tk.Button(self.myFrame, text=&#34;Run check on active/passive residuelists and continue to your Selection of your PDB file&#34;, relief=&#34;groove&#34;,
-              command=lambda: [self.actpas(json.loads(e.get()), json.loads(d.get()), index)]) \
+              command=lambda: [self.actpas(e.get(), d.get(), index)]) \
         .place(relheight=0.1, relwidth=1, relx=0, rely=0.30)</code></pre>
 </details>
 </dd>

@@ -221,13 +221,25 @@ class superparent:
         d.place(relheight=0.05, relwidth=1, relx=0, rely=0.25)
 
         tk.Button(self.myFrame, text="Run check on active/passive residuelists and continue to your Selection of your PDB file", relief="groove",
-                  command=lambda: [self.actpas(json.loads(e.get()), json.loads(d.get()), index)]) \
+                  command=lambda: [self.actpas(e.get(), d.get(), index)]) \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0.30)
 
-    def actpas(self, message, message2, index):
 
-        li_1_output = any(isinstance(i, list) for i in message)
-        li_2_output = any(isinstance(i, list) for i in message2)
+    def actpas(self, message, message2, index):
+        try:
+            json.loads(message)
+        except:
+            messagebox.showinfo(title="error",
+                                message="cannot load activeres, check format. needs to be ['1', '2'] or ['1'. '2'], ['1', '2'] \nMaybe you misplaced a bracket?")
+            return
+        try:
+            json.loads(message2)
+        except:
+            messagebox.showinfo(title="error",
+                                message="cannot load passiveres, check format. needs to be ['1', '2'] or ['1'. '2'], ['1', '2'] \nMaybe you misplaced a bracket?")
+            return
+        li_1_output = any(isinstance(i, list) for i in json.loads(message))
+        li_2_output = any(isinstance(i, list) for i in json.loads(message2))
 
         if li_1_output or li_2_output:
             messagebox.showinfo(title="error",
