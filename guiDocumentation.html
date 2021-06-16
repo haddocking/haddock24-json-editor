@@ -249,7 +249,7 @@ class superparent:
         d.place(relheight=0.05, relwidth=1, relx=0, rely=0.25)
 
         tk.Button(self.myFrame, text=&#34;Run check on active/passive residuelists and continue to your Selection of your PDB file&#34;, relief=&#34;groove&#34;,
-                  command=lambda: [self.actpas(json.loads(e.get()), json.loads(e.get()), index)]) \
+                  command=lambda: [self.actpas(json.loads(e.get()), json.loads(d.get()), index)]) \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0.30)
 
     def actpas(self, message, message2, index):
@@ -639,7 +639,7 @@ if __name__ == &#34;__main__&#34;:
         d.place(relheight=0.05, relwidth=1, relx=0, rely=0.25)
 
         tk.Button(self.myFrame, text=&#34;Run check on active/passive residuelists and continue to your Selection of your PDB file&#34;, relief=&#34;groove&#34;,
-                  command=lambda: [self.actpas(json.loads(e.get()), json.loads(e.get()), index)]) \
+                  command=lambda: [self.actpas(json.loads(e.get()), json.loads(d.get()), index)]) \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0.30)
 
     def actpas(self, message, message2, index):
@@ -1114,7 +1114,7 @@ if __name__ == &#34;__main__&#34;:
     d.place(relheight=0.05, relwidth=1, relx=0, rely=0.25)
 
     tk.Button(self.myFrame, text=&#34;Run check on active/passive residuelists and continue to your Selection of your PDB file&#34;, relief=&#34;groove&#34;,
-              command=lambda: [self.actpas(json.loads(e.get()), json.loads(e.get()), index)]) \
+              command=lambda: [self.actpas(json.loads(e.get()), json.loads(d.get()), index)]) \
         .place(relheight=0.1, relwidth=1, relx=0, rely=0.30)</code></pre>
 </details>
 </dd>

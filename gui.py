@@ -221,7 +221,7 @@ class superparent:
         d.place(relheight=0.05, relwidth=1, relx=0, rely=0.25)
 
         tk.Button(self.myFrame, text="Run check on active/passive residuelists and continue to your Selection of your PDB file", relief="groove",
-                  command=lambda: [self.actpas(json.loads(e.get()), json.loads(e.get()), index)]) \
+                  command=lambda: [self.actpas(json.loads(e.get()), json.loads(d.get()), index)]) \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0.30)
 
     def actpas(self, message, message2, index):
