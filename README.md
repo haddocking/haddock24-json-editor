@@ -2,7 +2,7 @@
 
 # for windows users:
 
-the haddock-logo and molecule images are required to be in the same map in order to function.
+the haddock-logo and molecule images are required to be in the same map as the exe.
 
 Windows users can just doubleclick the exe file.
 
