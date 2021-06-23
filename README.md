@@ -9,6 +9,7 @@ Just copy pasta these commands into your terminal.
 Say Y if it asks you a Y/n question
 
 
+
 sudo apt install git 
 
 git clone https://github.com/haddocking/haddock24-json-editor
