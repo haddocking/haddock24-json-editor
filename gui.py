@@ -16,6 +16,7 @@ class superparent:
 
     def __init__(self, master):
         """initialize and ask for json file"""
+
         self.myFrame = tk.Frame(master)
         self.myFrame.place(width=500, height=500)
         self.molecule_image = ImageTk.PhotoImage(Image.open("molecule100.jpg"))
@@ -198,19 +199,7 @@ class superparent:
                                message=f"Are you sure you wish to use ->{text}<- as your moleculetype?")
         if answer:
             self.clear_window()
-            self.confirm_actpasrescheck(index)
-        else:
-            return
-
-    def confirm_actpasrescheck(self, index):
-        """confirm selection of residue"""
-        answer = tk.messagebox.askyesno(title="conformation box",
-                               message=f"Are you sure you wish to proceed")
-        if answer:
             self.replace_pdb(index)
-            self.clear_window()
-            #self.contents['partners'][index]['activereslist'] = message
-            #self.contents['partners'][index]['passivereslist'] = message2
             self.molecule_window()
         else:
             return
