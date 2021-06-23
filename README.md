@@ -1,8 +1,12 @@
 # README
 
-# Windows users can just doubleclick the exe file
+# for windows users:
 
-For linux users: open terminal, navigate to your map of choice.
+Windows users can just doubleclick the exe file
+
+# For linux users:
+
+open terminal, navigate to your map of choice.
 
 Just copy pasta these commands into your terminal. Say Y if it asks you a Y/n question
 
