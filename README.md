@@ -4,6 +4,8 @@
 
 Windows users can just doubleclick the exe file
 
+the haddock-logo and molecule images are required for the exe to function, so put all the files in the same map.
+
 # For linux users:
 
 open terminal, navigate to your map of choice.
