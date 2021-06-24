@@ -39,7 +39,6 @@ root.title(&#34;Haddock gui&#34;)
 root.geometry(&#34;500x500&#34;)
 root.iconphoto(False, tk.PhotoImage(file=&#39;HADDOCK-logo.png&#39;))
 
-
 class superparent:
 
     def __init__(self, master):
@@ -225,69 +224,15 @@ class superparent:
         answer = tk.messagebox.askyesno(title=&#34;conformation box&#34;,
                                message=f&#34;Are you sure you wish to use -&gt;{text}&lt;- as your moleculetype?&#34;)
         if answer:
-            self.clear_window()
-            self.replace_pdb_options_actpasrescheck(index)
-        else:
-            return
-
-    def replace_pdb_options_actpasrescheck(self, index):
-        &#34;&#34;&#34;check to ensure the active and passive reslists meet criterea&#34;&#34;&#34;
-        tk.Label(self.myFrame,
-                 text=&#34;Please check the Activereslist in the entryfield below. \nIf the Activereslist has nested lists it will not be supported&#34;) \
-            .place(relheight=0.1, relwidth=1, relx=0, rely=0)
-        e = tk.Entry(self.myFrame)
-        message = self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;]
-        e.insert(tk.END, f&#34;{message}&#34;)
-        e.place(relheight=0.05, relwidth=1, relx=0, rely=0.1)
-
-        tk.Label(self.myFrame,
-                 text=&#34;Please check the Passivereslist in the entryfield below. \nIf the Passivereslist has nested lists it will not be supported&#34;) \
-            .place(relheight=0.1, relwidth=1, relx=0, rely=0.15)
-        d = tk.Entry(self.myFrame)
-        message2 = self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;]
-        d.insert(tk.END, f&#34;{message2}&#34;)
-        d.place(relheight=0.05, relwidth=1, relx=0, rely=0.25)
-
-        tk.Button(self.myFrame, text=&#34;Run check on active/passive residuelists and continue to your Selection of your PDB file&#34;, relief=&#34;groove&#34;,
-                  command=lambda: [self.actpas(e.get(), d.get(), index)]) \
-            .place(relheight=0.1, relwidth=1, relx=0, rely=0.30)
-
-
-    def actpas(self, message, message2, index):
-        try:
-            json.loads(message)
-        except:
-            messagebox.showinfo(title=&#34;error&#34;,
-                                message=&#34;cannot load activeres, check format. needs to be [&#39;1&#39;, &#39;2&#39;] or [&#39;1&#39;. &#39;2&#39;], [&#39;1&#39;, &#39;2&#39;] \nMaybe you misplaced a bracket?&#34;)
-            return
-        try:
-            json.loads(message2)
-        except:
-            messagebox.showinfo(title=&#34;error&#34;,
-                                message=&#34;cannot load passiveres, check format. needs to be [&#39;1&#39;, &#39;2&#39;] or [&#39;1&#39;. &#39;2&#39;], [&#39;1&#39;, &#39;2&#39;] \nMaybe you misplaced a bracket?&#34;)
-            return
-        li_1_output = any(isinstance(i, list) for i in json.loads(message))
-        li_2_output = any(isinstance(i, list) for i in json.loads(message2))
-
-        if li_1_output or li_2_output:
-            messagebox.showinfo(title=&#34;error&#34;,
-                                message=&#34;sorry nested lists in the passive/active reslist are not supported, please edit this. \ntip: Click the edit passive/active res button below Replace Pdb and just select the text and press Delete\nPress save current input&#34;)
-            return
-        else:
-            self.confirm_actpasrescheck(message, message2, index)
-
-    def confirm_actpasrescheck(self, message, message2, index):
-        &#34;&#34;&#34;confirm selection of residue&#34;&#34;&#34;
-        answer = tk.messagebox.askyesno(title=&#34;conformation box&#34;,
-                               message=f&#34;Are you sure you wish to proceed&#34;)
-        if answer:
             self.replace_pdb(index)
             self.clear_window()
-            self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;] = message
-            self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;] = message2
             self.molecule_window()
+
         else:
             return
+
+
+
 
     def replace_pdb(self, index):
         &#34;&#34;&#34;replace pdb in molecule&#34;&#34;&#34;
@@ -307,30 +252,81 @@ class superparent:
         &#34;&#34;&#34;save active residue&#34;&#34;&#34;
         residue_update = f&#34;Active residue list of molecule {index} in the {self.name} file has been updated&#34;
         self.changes.append(residue_update)
-        if &#34;[&#34; and &#34;]&#34; not in entry:
-            entry = &#34;[&#34; + entry + &#34;]&#34;
-        self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;] = entry
-        self.mbox.showinfo(message=&#34;residue_list succesfully replaced&#34;)
-        self.clear_window()
-        self.molecule_window()
+
+        enuindexholderlistright = []
+        enuindexholderlistleft = []
+        amount_of_nested_lists = 0
+        for enuindex, item in enumerate(entry):
+            if amount_of_nested_lists &gt; 1:
+                tk.messagebox.showinfo(title=&#34;error&#34;, message=&#34;sorry, nested lists --&gt; [x,y] in [ ] &lt;-- are not allowed, format has to be: --&gt;[x,y],[x,y],[x,y]&lt;--&#34;)
+                return
+            if item == &#34;]&#34;:
+                enuindexholderlistright.append(enuindex)
+                amount_of_nested_lists -= 1
+            if item == &#34;[&#34;:
+                enuindexholderlistleft.append(enuindex)
+                amount_of_nested_lists += 1
+
+        passagestring = &#34;&#34;
+        if len(enuindexholderlistleft) != len(enuindexholderlistright) or not enuindexholderlistleft and not enuindexholderlistright:
+            tk.messagebox.showinfo(title=&#34;error&#34;, message=&#34;no or incorrect brackets&#34;)
+            return
+        if enuindexholderlistleft and enuindexholderlistright:
+                for x,y in zip(enuindexholderlistleft, enuindexholderlistright):
+                    passagestring += f&#34;{entry[x:y+1]}, &#34;
+                self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;] = passagestring
+                self.mbox.showinfo(message=&#34;residue_list succesfully replaced&#34;)
+                self.clear_window()
+                self.molecule_window()
+        else:
+            tk.messagebox.showinfo(title=&#34;error&#34;, message=&#34;no or incorrect brackets&#34;)
+            return
+
+
 
     def save_passive_residue_list(self, index, entry):
         &#34;&#34;&#34;save passive residue&#34;&#34;&#34;
         residue_update = f&#34;Passive residue list of molecule {index} in the {self.name} file has been updated&#34;
         self.changes.append(residue_update)
-        if &#34;[&#34; and &#34;]&#34; not in entry:
-            entry = &#34;[&#34; + entry + &#34;]&#34;
-        self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;] = entry
-        self.mbox.showinfo(message=&#34;residue_list succesfully replaced&#34;)
-        self.clear_window()
-        self.molecule_window()
+
+        enuindexholderlistright = []
+        enuindexholderlistleft = []
+        amount_of_nested_lists = 0
+        for enuindex, item in enumerate(entry):
+            if amount_of_nested_lists &gt; 1:
+                tk.messagebox.showinfo(title=&#34;error&#34;,
+                                       message=&#34;sorry, nested lists --&gt; [x,y] in [ ] &lt;-- are not allowed, format has to be: --&gt;[x,y],[x,y],[x,y]&lt;--&#34;)
+                return
+            if item == &#34;]&#34;:
+                enuindexholderlistright.append(enuindex)
+                amount_of_nested_lists -= 1
+            if item == &#34;[&#34;:
+                enuindexholderlistleft.append(enuindex)
+                amount_of_nested_lists += 1
+
+        passagestring = &#34;&#34;
+        if len(enuindexholderlistleft) != len(
+                enuindexholderlistright) or not enuindexholderlistleft and not enuindexholderlistright:
+            tk.messagebox.showinfo(title=&#34;error&#34;, message=&#34;no or incorrect brackets&#34;)
+            return
+        if enuindexholderlistleft and enuindexholderlistright:
+            for x, y in zip(enuindexholderlistleft, enuindexholderlistright):
+                passagestring += f&#34;{entry[x:y + 1]}, &#34;
+            self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;] = passagestring
+            self.mbox.showinfo(message=&#34;residue_list succesfully replaced&#34;)
+            self.clear_window()
+            self.molecule_window()
+        else:
+            tk.messagebox.showinfo(title=&#34;error&#34;, message=&#34;no or incorrect brackets&#34;)
+            return
 
     def edit_active_residue(self, index):
         &#34;&#34;&#34;change active residue&#34;&#34;&#34;
+        print(self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;])
         tk.Label(self.myFrame, text=&#34;Active res list, use the box below for editing&#34;) \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0)
         e = tk.Entry(self.myFrame)
-        monkeyproof = str(self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;])[1:-1]
+        monkeyproof = str(self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;])
         e.insert(tk.END, f&#34;{monkeyproof}&#34;)
         e.place(relheight=0.1, relwidth=1, relx=0, rely=0.1)
         tk.Button(self.myFrame, text=&#34;Save current input&#34;, relief=&#34;groove&#34;,
@@ -346,7 +342,7 @@ class superparent:
                  text=&#34;Passive res list, use the box below for editing&#34;) \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0)
         e = tk.Entry(self.myFrame)
-        monkeyproof = str(self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;])[1:-1]
+        monkeyproof = str(self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;])
         e.insert(tk.END, f&#34;{monkeyproof}&#34;)
         e.place(relheight=0.1, relwidth=1, relx=0, rely=0.1)
         tk.Button(self.myFrame, text=&#34;Save current input&#34;, relief=&#34;groove&#34;,
@@ -627,69 +623,15 @@ if __name__ == &#34;__main__&#34;:
         answer = tk.messagebox.askyesno(title=&#34;conformation box&#34;,
                                message=f&#34;Are you sure you wish to use -&gt;{text}&lt;- as your moleculetype?&#34;)
         if answer:
-            self.clear_window()
-            self.replace_pdb_options_actpasrescheck(index)
-        else:
-            return
-
-    def replace_pdb_options_actpasrescheck(self, index):
-        &#34;&#34;&#34;check to ensure the active and passive reslists meet criterea&#34;&#34;&#34;
-        tk.Label(self.myFrame,
-                 text=&#34;Please check the Activereslist in the entryfield below. \nIf the Activereslist has nested lists it will not be supported&#34;) \
-            .place(relheight=0.1, relwidth=1, relx=0, rely=0)
-        e = tk.Entry(self.myFrame)
-        message = self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;]
-        e.insert(tk.END, f&#34;{message}&#34;)
-        e.place(relheight=0.05, relwidth=1, relx=0, rely=0.1)
-
-        tk.Label(self.myFrame,
-                 text=&#34;Please check the Passivereslist in the entryfield below. \nIf the Passivereslist has nested lists it will not be supported&#34;) \
-            .place(relheight=0.1, relwidth=1, relx=0, rely=0.15)
-        d = tk.Entry(self.myFrame)
-        message2 = self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;]
-        d.insert(tk.END, f&#34;{message2}&#34;)
-        d.place(relheight=0.05, relwidth=1, relx=0, rely=0.25)
-
-        tk.Button(self.myFrame, text=&#34;Run check on active/passive residuelists and continue to your Selection of your PDB file&#34;, relief=&#34;groove&#34;,
-                  command=lambda: [self.actpas(e.get(), d.get(), index)]) \
-            .place(relheight=0.1, relwidth=1, relx=0, rely=0.30)
-
-
-    def actpas(self, message, message2, index):
-        try:
-            json.loads(message)
-        except:
-            messagebox.showinfo(title=&#34;error&#34;,
-                                message=&#34;cannot load activeres, check format. needs to be [&#39;1&#39;, &#39;2&#39;] or [&#39;1&#39;. &#39;2&#39;], [&#39;1&#39;, &#39;2&#39;] \nMaybe you misplaced a bracket?&#34;)
-            return
-        try:
-            json.loads(message2)
-        except:
-            messagebox.showinfo(title=&#34;error&#34;,
-                                message=&#34;cannot load passiveres, check format. needs to be [&#39;1&#39;, &#39;2&#39;] or [&#39;1&#39;. &#39;2&#39;], [&#39;1&#39;, &#39;2&#39;] \nMaybe you misplaced a bracket?&#34;)
-            return
-        li_1_output = any(isinstance(i, list) for i in json.loads(message))
-        li_2_output = any(isinstance(i, list) for i in json.loads(message2))
-
-        if li_1_output or li_2_output:
-            messagebox.showinfo(title=&#34;error&#34;,
-                                message=&#34;sorry nested lists in the passive/active reslist are not supported, please edit this. \ntip: Click the edit passive/active res button below Replace Pdb and just select the text and press Delete\nPress save current input&#34;)
-            return
-        else:
-            self.confirm_actpasrescheck(message, message2, index)
-
-    def confirm_actpasrescheck(self, message, message2, index):
-        &#34;&#34;&#34;confirm selection of residue&#34;&#34;&#34;
-        answer = tk.messagebox.askyesno(title=&#34;conformation box&#34;,
-                               message=f&#34;Are you sure you wish to proceed&#34;)
-        if answer:
             self.replace_pdb(index)
             self.clear_window()
-            self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;] = message
-            self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;] = message2
             self.molecule_window()
+
         else:
             return
+
+
+
 
     def replace_pdb(self, index):
         &#34;&#34;&#34;replace pdb in molecule&#34;&#34;&#34;
@@ -709,30 +651,81 @@ if __name__ == &#34;__main__&#34;:
         &#34;&#34;&#34;save active residue&#34;&#34;&#34;
         residue_update = f&#34;Active residue list of molecule {index} in the {self.name} file has been updated&#34;
         self.changes.append(residue_update)
-        if &#34;[&#34; and &#34;]&#34; not in entry:
-            entry = &#34;[&#34; + entry + &#34;]&#34;
-        self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;] = entry
-        self.mbox.showinfo(message=&#34;residue_list succesfully replaced&#34;)
-        self.clear_window()
-        self.molecule_window()
+
+        enuindexholderlistright = []
+        enuindexholderlistleft = []
+        amount_of_nested_lists = 0
+        for enuindex, item in enumerate(entry):
+            if amount_of_nested_lists &gt; 1:
+                tk.messagebox.showinfo(title=&#34;error&#34;, message=&#34;sorry, nested lists --&gt; [x,y] in [ ] &lt;-- are not allowed, format has to be: --&gt;[x,y],[x,y],[x,y]&lt;--&#34;)
+                return
+            if item == &#34;]&#34;:
+                enuindexholderlistright.append(enuindex)
+                amount_of_nested_lists -= 1
+            if item == &#34;[&#34;:
+                enuindexholderlistleft.append(enuindex)
+                amount_of_nested_lists += 1
+
+        passagestring = &#34;&#34;
+        if len(enuindexholderlistleft) != len(enuindexholderlistright) or not enuindexholderlistleft and not enuindexholderlistright:
+            tk.messagebox.showinfo(title=&#34;error&#34;, message=&#34;no or incorrect brackets&#34;)
+            return
+        if enuindexholderlistleft and enuindexholderlistright:
+                for x,y in zip(enuindexholderlistleft, enuindexholderlistright):
+                    passagestring += f&#34;{entry[x:y+1]}, &#34;
+                self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;] = passagestring
+                self.mbox.showinfo(message=&#34;residue_list succesfully replaced&#34;)
+                self.clear_window()
+                self.molecule_window()
+        else:
+            tk.messagebox.showinfo(title=&#34;error&#34;, message=&#34;no or incorrect brackets&#34;)
+            return
+
+
 
     def save_passive_residue_list(self, index, entry):
         &#34;&#34;&#34;save passive residue&#34;&#34;&#34;
         residue_update = f&#34;Passive residue list of molecule {index} in the {self.name} file has been updated&#34;
         self.changes.append(residue_update)
-        if &#34;[&#34; and &#34;]&#34; not in entry:
-            entry = &#34;[&#34; + entry + &#34;]&#34;
-        self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;] = entry
-        self.mbox.showinfo(message=&#34;residue_list succesfully replaced&#34;)
-        self.clear_window()
-        self.molecule_window()
+
+        enuindexholderlistright = []
+        enuindexholderlistleft = []
+        amount_of_nested_lists = 0
+        for enuindex, item in enumerate(entry):
+            if amount_of_nested_lists &gt; 1:
+                tk.messagebox.showinfo(title=&#34;error&#34;,
+                                       message=&#34;sorry, nested lists --&gt; [x,y] in [ ] &lt;-- are not allowed, format has to be: --&gt;[x,y],[x,y],[x,y]&lt;--&#34;)
+                return
+            if item == &#34;]&#34;:
+                enuindexholderlistright.append(enuindex)
+                amount_of_nested_lists -= 1
+            if item == &#34;[&#34;:
+                enuindexholderlistleft.append(enuindex)
+                amount_of_nested_lists += 1
+
+        passagestring = &#34;&#34;
+        if len(enuindexholderlistleft) != len(
+                enuindexholderlistright) or not enuindexholderlistleft and not enuindexholderlistright:
+            tk.messagebox.showinfo(title=&#34;error&#34;, message=&#34;no or incorrect brackets&#34;)
+            return
+        if enuindexholderlistleft and enuindexholderlistright:
+            for x, y in zip(enuindexholderlistleft, enuindexholderlistright):
+                passagestring += f&#34;{entry[x:y + 1]}, &#34;
+            self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;] = passagestring
+            self.mbox.showinfo(message=&#34;residue_list succesfully replaced&#34;)
+            self.clear_window()
+            self.molecule_window()
+        else:
+            tk.messagebox.showinfo(title=&#34;error&#34;, message=&#34;no or incorrect brackets&#34;)
+            return
 
     def edit_active_residue(self, index):
         &#34;&#34;&#34;change active residue&#34;&#34;&#34;
+        print(self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;])
         tk.Label(self.myFrame, text=&#34;Active res list, use the box below for editing&#34;) \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0)
         e = tk.Entry(self.myFrame)
-        monkeyproof = str(self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;])[1:-1]
+        monkeyproof = str(self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;])
         e.insert(tk.END, f&#34;{monkeyproof}&#34;)
         e.place(relheight=0.1, relwidth=1, relx=0, rely=0.1)
         tk.Button(self.myFrame, text=&#34;Save current input&#34;, relief=&#34;groove&#34;,
@@ -748,7 +741,7 @@ if __name__ == &#34;__main__&#34;:
                  text=&#34;Passive res list, use the box below for editing&#34;) \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0)
         e = tk.Entry(self.myFrame)
-        monkeyproof = str(self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;])[1:-1]
+        monkeyproof = str(self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;])
         e.insert(tk.END, f&#34;{monkeyproof}&#34;)
         e.place(relheight=0.1, relwidth=1, relx=0, rely=0.1)
         tk.Button(self.myFrame, text=&#34;Save current input&#34;, relief=&#34;groove&#34;,
@@ -820,39 +813,6 @@ if __name__ == &#34;__main__&#34;:
 </details>
 <h3>Methods</h3>
 <dl>
-<dt id="gui.superparent.actpas"><code class="name flex">
-<span>def <span class="ident">actpas</span></span>(<span>self, message, message2, index)</span>
-</code></dt>
-<dd>
-<div class="desc"></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def actpas(self, message, message2, index):
-    try:
-        json.loads(message)
-    except:
-        messagebox.showinfo(title=&#34;error&#34;,
-                            message=&#34;cannot load activeres, check format. needs to be [&#39;1&#39;, &#39;2&#39;] or [&#39;1&#39;. &#39;2&#39;], [&#39;1&#39;, &#39;2&#39;] \nMaybe you misplaced a bracket?&#34;)
-        return
-    try:
-        json.loads(message2)
-    except:
-        messagebox.showinfo(title=&#34;error&#34;,
-                            message=&#34;cannot load passiveres, check format. needs to be [&#39;1&#39;, &#39;2&#39;] or [&#39;1&#39;. &#39;2&#39;], [&#39;1&#39;, &#39;2&#39;] \nMaybe you misplaced a bracket?&#34;)
-        return
-    li_1_output = any(isinstance(i, list) for i in json.loads(message))
-    li_2_output = any(isinstance(i, list) for i in json.loads(message2))
-
-    if li_1_output or li_2_output:
-        messagebox.showinfo(title=&#34;error&#34;,
-                            message=&#34;sorry nested lists in the passive/active reslist are not supported, please edit this. \ntip: Click the edit passive/active res button below Replace Pdb and just select the text and press Delete\nPress save current input&#34;)
-        return
-    else:
-        self.confirm_actpasrescheck(message, message2, index)</code></pre>
-</details>
-</dd>
 <dt id="gui.superparent.clear_window"><code class="name flex">
 <span>def <span class="ident">clear_window</span></span>(<span>self)</span>
 </code></dt>
@@ -868,29 +828,6 @@ if __name__ == &#34;__main__&#34;:
         items.destroy()</code></pre>
 </details>
 </dd>
-<dt id="gui.superparent.confirm_actpasrescheck"><code class="name flex">
-<span>def <span class="ident">confirm_actpasrescheck</span></span>(<span>self, message, message2, index)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>confirm selection of residue</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def confirm_actpasrescheck(self, message, message2, index):
-    &#34;&#34;&#34;confirm selection of residue&#34;&#34;&#34;
-    answer = tk.messagebox.askyesno(title=&#34;conformation box&#34;,
-                           message=f&#34;Are you sure you wish to proceed&#34;)
-    if answer:
-        self.replace_pdb(index)
-        self.clear_window()
-        self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;] = message
-        self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;] = message2
-        self.molecule_window()
-    else:
-        return</code></pre>
-</details>
-</dd>
 <dt id="gui.superparent.confirm_moleculename"><code class="name flex">
 <span>def <span class="ident">confirm_moleculename</span></span>(<span>self, text, index)</span>
 </code></dt>
@@ -904,8 +841,10 @@ if __name__ == &#34;__main__&#34;:
     answer = tk.messagebox.askyesno(title=&#34;conformation box&#34;,
                            message=f&#34;Are you sure you wish to use -&gt;{text}&lt;- as your moleculetype?&#34;)
     if answer:
+        self.replace_pdb(index)
         self.clear_window()
-        self.replace_pdb_options_actpasrescheck(index)
+        self.molecule_window()
+
     else:
         return</code></pre>
 </details>
@@ -921,10 +860,11 @@ if __name__ == &#34;__main__&#34;:
 </summary>
 <pre><code class="python">def edit_active_residue(self, index):
     &#34;&#34;&#34;change active residue&#34;&#34;&#34;
+    print(self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;])
     tk.Label(self.myFrame, text=&#34;Active res list, use the box below for editing&#34;) \
         .place(relheight=0.1, relwidth=1, relx=0, rely=0)
     e = tk.Entry(self.myFrame)
-    monkeyproof = str(self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;])[1:-1]
+    monkeyproof = str(self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;])
     e.insert(tk.END, f&#34;{monkeyproof}&#34;)
     e.place(relheight=0.1, relwidth=1, relx=0, rely=0.1)
     tk.Button(self.myFrame, text=&#34;Save current input&#34;, relief=&#34;groove&#34;,
@@ -950,7 +890,7 @@ if __name__ == &#34;__main__&#34;:
              text=&#34;Passive res list, use the box below for editing&#34;) \
         .place(relheight=0.1, relwidth=1, relx=0, rely=0)
     e = tk.Entry(self.myFrame)
-    monkeyproof = str(self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;])[1:-1]
+    monkeyproof = str(self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;])
     e.insert(tk.END, f&#34;{monkeyproof}&#34;)
     e.place(relheight=0.1, relwidth=1, relx=0, rely=0.1)
     tk.Button(self.myFrame, text=&#34;Save current input&#34;, relief=&#34;groove&#34;,
@@ -1121,38 +1061,6 @@ if __name__ == &#34;__main__&#34;:
         return</code></pre>
 </details>
 </dd>
-<dt id="gui.superparent.replace_pdb_options_actpasrescheck"><code class="name flex">
-<span>def <span class="ident">replace_pdb_options_actpasrescheck</span></span>(<span>self, index)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>check to ensure the active and passive reslists meet criterea</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def replace_pdb_options_actpasrescheck(self, index):
-    &#34;&#34;&#34;check to ensure the active and passive reslists meet criterea&#34;&#34;&#34;
-    tk.Label(self.myFrame,
-             text=&#34;Please check the Activereslist in the entryfield below. \nIf the Activereslist has nested lists it will not be supported&#34;) \
-        .place(relheight=0.1, relwidth=1, relx=0, rely=0)
-    e = tk.Entry(self.myFrame)
-    message = self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;]
-    e.insert(tk.END, f&#34;{message}&#34;)
-    e.place(relheight=0.05, relwidth=1, relx=0, rely=0.1)
-
-    tk.Label(self.myFrame,
-             text=&#34;Please check the Passivereslist in the entryfield below. \nIf the Passivereslist has nested lists it will not be supported&#34;) \
-        .place(relheight=0.1, relwidth=1, relx=0, rely=0.15)
-    d = tk.Entry(self.myFrame)
-    message2 = self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;]
-    d.insert(tk.END, f&#34;{message2}&#34;)
-    d.place(relheight=0.05, relwidth=1, relx=0, rely=0.25)
-
-    tk.Button(self.myFrame, text=&#34;Run check on active/passive residuelists and continue to your Selection of your PDB file&#34;, relief=&#34;groove&#34;,
-              command=lambda: [self.actpas(e.get(), d.get(), index)]) \
-        .place(relheight=0.1, relwidth=1, relx=0, rely=0.30)</code></pre>
-</details>
-</dd>
 <dt id="gui.superparent.replace_pdb_options_molecule_name"><code class="name flex">
 <span>def <span class="ident">replace_pdb_options_molecule_name</span></span>(<span>self, index)</span>
 </code></dt>
@@ -1212,12 +1120,35 @@ if __name__ == &#34;__main__&#34;:
     &#34;&#34;&#34;save active residue&#34;&#34;&#34;
     residue_update = f&#34;Active residue list of molecule {index} in the {self.name} file has been updated&#34;
     self.changes.append(residue_update)
-    if &#34;[&#34; and &#34;]&#34; not in entry:
-        entry = &#34;[&#34; + entry + &#34;]&#34;
-    self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;] = entry
-    self.mbox.showinfo(message=&#34;residue_list succesfully replaced&#34;)
-    self.clear_window()
-    self.molecule_window()</code></pre>
+
+    enuindexholderlistright = []
+    enuindexholderlistleft = []
+    amount_of_nested_lists = 0
+    for enuindex, item in enumerate(entry):
+        if amount_of_nested_lists &gt; 1:
+            tk.messagebox.showinfo(title=&#34;error&#34;, message=&#34;sorry, nested lists --&gt; [x,y] in [ ] &lt;-- are not allowed, format has to be: --&gt;[x,y],[x,y],[x,y]&lt;--&#34;)
+            return
+        if item == &#34;]&#34;:
+            enuindexholderlistright.append(enuindex)
+            amount_of_nested_lists -= 1
+        if item == &#34;[&#34;:
+            enuindexholderlistleft.append(enuindex)
+            amount_of_nested_lists += 1
+
+    passagestring = &#34;&#34;
+    if len(enuindexholderlistleft) != len(enuindexholderlistright) or not enuindexholderlistleft and not enuindexholderlistright:
+        tk.messagebox.showinfo(title=&#34;error&#34;, message=&#34;no or incorrect brackets&#34;)
+        return
+    if enuindexholderlistleft and enuindexholderlistright:
+            for x,y in zip(enuindexholderlistleft, enuindexholderlistright):
+                passagestring += f&#34;{entry[x:y+1]}, &#34;
+            self.contents[&#39;partners&#39;][index][&#39;activereslist&#39;] = passagestring
+            self.mbox.showinfo(message=&#34;residue_list succesfully replaced&#34;)
+            self.clear_window()
+            self.molecule_window()
+    else:
+        tk.messagebox.showinfo(title=&#34;error&#34;, message=&#34;no or incorrect brackets&#34;)
+        return</code></pre>
 </details>
 </dd>
 <dt id="gui.superparent.save_json"><code class="name flex">
@@ -1276,12 +1207,37 @@ if __name__ == &#34;__main__&#34;:
     &#34;&#34;&#34;save passive residue&#34;&#34;&#34;
     residue_update = f&#34;Passive residue list of molecule {index} in the {self.name} file has been updated&#34;
     self.changes.append(residue_update)
-    if &#34;[&#34; and &#34;]&#34; not in entry:
-        entry = &#34;[&#34; + entry + &#34;]&#34;
-    self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;] = entry
-    self.mbox.showinfo(message=&#34;residue_list succesfully replaced&#34;)
-    self.clear_window()
-    self.molecule_window()</code></pre>
+
+    enuindexholderlistright = []
+    enuindexholderlistleft = []
+    amount_of_nested_lists = 0
+    for enuindex, item in enumerate(entry):
+        if amount_of_nested_lists &gt; 1:
+            tk.messagebox.showinfo(title=&#34;error&#34;,
+                                   message=&#34;sorry, nested lists --&gt; [x,y] in [ ] &lt;-- are not allowed, format has to be: --&gt;[x,y],[x,y],[x,y]&lt;--&#34;)
+            return
+        if item == &#34;]&#34;:
+            enuindexholderlistright.append(enuindex)
+            amount_of_nested_lists -= 1
+        if item == &#34;[&#34;:
+            enuindexholderlistleft.append(enuindex)
+            amount_of_nested_lists += 1
+
+    passagestring = &#34;&#34;
+    if len(enuindexholderlistleft) != len(
+            enuindexholderlistright) or not enuindexholderlistleft and not enuindexholderlistright:
+        tk.messagebox.showinfo(title=&#34;error&#34;, message=&#34;no or incorrect brackets&#34;)
+        return
+    if enuindexholderlistleft and enuindexholderlistright:
+        for x, y in zip(enuindexholderlistleft, enuindexholderlistright):
+            passagestring += f&#34;{entry[x:y + 1]}, &#34;
+        self.contents[&#39;partners&#39;][index][&#39;passivereslist&#39;] = passagestring
+        self.mbox.showinfo(message=&#34;residue_list succesfully replaced&#34;)
+        self.clear_window()
+        self.molecule_window()
+    else:
+        tk.messagebox.showinfo(title=&#34;error&#34;, message=&#34;no or incorrect brackets&#34;)
+        return</code></pre>
 </details>
 </dd>
 <dt id="gui.superparent.save_pdb"><code class="name flex">
@@ -1400,9 +1356,7 @@ if __name__ == &#34;__main__&#34;:
 <li>
 <h4><code><a title="gui.superparent" href="#gui.superparent">superparent</a></code></h4>
 <ul class="">
-<li><code><a title="gui.superparent.actpas" href="#gui.superparent.actpas">actpas</a></code></li>
 <li><code><a title="gui.superparent.clear_window" href="#gui.superparent.clear_window">clear_window</a></code></li>
-<li><code><a title="gui.superparent.confirm_actpasrescheck" href="#gui.superparent.confirm_actpasrescheck">confirm_actpasrescheck</a></code></li>
 <li><code><a title="gui.superparent.confirm_moleculename" href="#gui.superparent.confirm_moleculename">confirm_moleculename</a></code></li>
 <li><code><a title="gui.superparent.edit_active_residue" href="#gui.superparent.edit_active_residue">edit_active_residue</a></code></li>
 <li><code><a title="gui.superparent.edit_passive_residue" href="#gui.superparent.edit_passive_residue">edit_passive_residue</a></code></li>
@@ -1413,7 +1367,6 @@ if __name__ == &#34;__main__&#34;:
 <li><code><a title="gui.superparent.molecule_stats" href="#gui.superparent.molecule_stats">molecule_stats</a></code></li>
 <li><code><a title="gui.superparent.molecule_window" href="#gui.superparent.molecule_window">molecule_window</a></code></li>
 <li><code><a title="gui.superparent.replace_pdb" href="#gui.superparent.replace_pdb">replace_pdb</a></code></li>
-<li><code><a title="gui.superparent.replace_pdb_options_actpasrescheck" href="#gui.superparent.replace_pdb_options_actpasrescheck">replace_pdb_options_actpasrescheck</a></code></li>
 <li><code><a title="gui.superparent.replace_pdb_options_molecule_name" href="#gui.superparent.replace_pdb_options_molecule_name">replace_pdb_options_molecule_name</a></code></li>
 <li><code><a title="gui.superparent.replace_table" href="#gui.superparent.replace_table">replace_table</a></code></li>
 <li><code><a title="gui.superparent.save_active_residue_list" href="#gui.superparent.save_active_residue_list">save_active_residue_list</a></code></li>

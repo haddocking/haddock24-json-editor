@@ -224,24 +224,35 @@ class superparent:
         """save active residue"""
         residue_update = f"Active residue list of molecule {index} in the {self.name} file has been updated"
         self.changes.append(residue_update)
+
         enuindexholderlistright = []
         enuindexholderlistleft = []
+        amount_of_nested_lists = 0
         for enuindex, item in enumerate(entry):
+            if amount_of_nested_lists > 1:
+                tk.messagebox.showinfo(title="error", message="sorry, nested lists --> [x,y] in [ ] <-- are not allowed, format has to be: -->[x,y],[x,y],[x,y]<--")
+                return
             if item == "]":
-                enuindexholderlistright.append(enuindex+1)
+                enuindexholderlistright.append(enuindex)
+                amount_of_nested_lists -= 1
             if item == "[":
                 enuindexholderlistleft.append(enuindex)
+                amount_of_nested_lists += 1
+
         passagestring = ""
+        if len(enuindexholderlistleft) != len(enuindexholderlistright) or not enuindexholderlistleft and not enuindexholderlistright:
+            tk.messagebox.showinfo(title="error", message="no or incorrect brackets")
+            return
         if enuindexholderlistleft and enuindexholderlistright:
                 for x,y in zip(enuindexholderlistleft, enuindexholderlistright):
-                    passagestring += f"{entry[x:y]}, "
+                    passagestring += f"{entry[x:y+1]}, "
                 self.contents['partners'][index]['activereslist'] = passagestring
                 self.mbox.showinfo(message="residue_list succesfully replaced")
                 self.clear_window()
                 self.molecule_window()
         else:
             tk.messagebox.showinfo(title="error", message="no or incorrect brackets")
-
+            return
 
 
 
@@ -249,30 +260,45 @@ class superparent:
         """save passive residue"""
         residue_update = f"Passive residue list of molecule {index} in the {self.name} file has been updated"
         self.changes.append(residue_update)
+
         enuindexholderlistright = []
         enuindexholderlistleft = []
+        amount_of_nested_lists = 0
         for enuindex, item in enumerate(entry):
+            if amount_of_nested_lists > 1:
+                tk.messagebox.showinfo(title="error",
+                                       message="sorry, nested lists --> [x,y] in [ ] <-- are not allowed, format has to be: -->[x,y],[x,y],[x,y]<--")
+                return
             if item == "]":
-                enuindexholderlistright.append(enuindex + 1)
+                enuindexholderlistright.append(enuindex)
+                amount_of_nested_lists -= 1
             if item == "[":
                 enuindexholderlistleft.append(enuindex)
+                amount_of_nested_lists += 1
+
         passagestring = ""
+        if len(enuindexholderlistleft) != len(
+                enuindexholderlistright) or not enuindexholderlistleft and not enuindexholderlistright:
+            tk.messagebox.showinfo(title="error", message="no or incorrect brackets")
+            return
         if enuindexholderlistleft and enuindexholderlistright:
             for x, y in zip(enuindexholderlistleft, enuindexholderlistright):
-                passagestring += f"{entry[x:y]}, "
+                passagestring += f"{entry[x:y + 1]}, "
             self.contents['partners'][index]['passivereslist'] = passagestring
             self.mbox.showinfo(message="residue_list succesfully replaced")
             self.clear_window()
             self.molecule_window()
         else:
             tk.messagebox.showinfo(title="error", message="no or incorrect brackets")
+            return
 
     def edit_active_residue(self, index):
         """change active residue"""
+        print(self.contents['partners'][index]['activereslist'])
         tk.Label(self.myFrame, text="Active res list, use the box below for editing") \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0)
         e = tk.Entry(self.myFrame)
-        monkeyproof = str(self.contents['partners'][index]['activereslist'])[1:-1]
+        monkeyproof = str(self.contents['partners'][index]['activereslist'])
         e.insert(tk.END, f"{monkeyproof}")
         e.place(relheight=0.1, relwidth=1, relx=0, rely=0.1)
         tk.Button(self.myFrame, text="Save current input", relief="groove",
@@ -288,7 +314,7 @@ class superparent:
                  text="Passive res list, use the box below for editing") \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0)
         e = tk.Entry(self.myFrame)
-        monkeyproof = str(self.contents['partners'][index]['passivereslist'])[1:-1]
+        monkeyproof = str(self.contents['partners'][index]['passivereslist'])
         e.insert(tk.END, f"{monkeyproof}")
         e.place(relheight=0.1, relwidth=1, relx=0, rely=0.1)
         tk.Button(self.myFrame, text="Save current input", relief="groove",
