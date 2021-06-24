@@ -11,12 +11,10 @@ root.title("Haddock gui")
 root.geometry("500x500")
 root.iconphoto(False, tk.PhotoImage(file='HADDOCK-logo.png'))
 
-
 class superparent:
 
     def __init__(self, master):
         """initialize and ask for json file"""
-
         self.myFrame = tk.Frame(master)
         self.myFrame.place(width=500, height=500)
         self.molecule_image = ImageTk.PhotoImage(Image.open("molecule100.jpg"))
@@ -198,11 +196,15 @@ class superparent:
         answer = tk.messagebox.askyesno(title="conformation box",
                                message=f"Are you sure you wish to use ->{text}<- as your moleculetype?")
         if answer:
-            self.clear_window()
             self.replace_pdb(index)
+            self.clear_window()
             self.molecule_window()
+
         else:
             return
+
+
+
 
     def replace_pdb(self, index):
         """replace pdb in molecule"""
@@ -222,23 +224,48 @@ class superparent:
         """save active residue"""
         residue_update = f"Active residue list of molecule {index} in the {self.name} file has been updated"
         self.changes.append(residue_update)
-        if "[" and "]" not in entry:
-            entry = "[" + entry + "]"
-        self.contents['partners'][index]['activereslist'] = entry
-        self.mbox.showinfo(message="residue_list succesfully replaced")
-        self.clear_window()
-        self.molecule_window()
+        enuindexholderlistright = []
+        enuindexholderlistleft = []
+        for enuindex, item in enumerate(entry):
+            if item == "]":
+                enuindexholderlistright.append(enuindex+1)
+            if item == "[":
+                enuindexholderlistleft.append(enuindex)
+        passagestring = ""
+        if enuindexholderlistleft and enuindexholderlistright:
+                for x,y in zip(enuindexholderlistleft, enuindexholderlistright):
+                    passagestring += f"{entry[x:y]}, "
+                self.contents['partners'][index]['activereslist'] = passagestring
+                self.mbox.showinfo(message="residue_list succesfully replaced")
+                self.clear_window()
+                self.molecule_window()
+        else:
+            tk.messagebox.showinfo(title="error", message="no or incorrect brackets")
+
+
+
 
     def save_passive_residue_list(self, index, entry):
         """save passive residue"""
         residue_update = f"Passive residue list of molecule {index} in the {self.name} file has been updated"
         self.changes.append(residue_update)
-        if "[" and "]" not in entry:
-            entry = "[" + entry + "]"
-        self.contents['partners'][index]['passivereslist'] = entry
-        self.mbox.showinfo(message="residue_list succesfully replaced")
-        self.clear_window()
-        self.molecule_window()
+        enuindexholderlistright = []
+        enuindexholderlistleft = []
+        for enuindex, item in enumerate(entry):
+            if item == "]":
+                enuindexholderlistright.append(enuindex + 1)
+            if item == "[":
+                enuindexholderlistleft.append(enuindex)
+        passagestring = ""
+        if enuindexholderlistleft and enuindexholderlistright:
+            for x, y in zip(enuindexholderlistleft, enuindexholderlistright):
+                passagestring += f"{entry[x:y]}, "
+            self.contents['partners'][index]['passivereslist'] = passagestring
+            self.mbox.showinfo(message="residue_list succesfully replaced")
+            self.clear_window()
+            self.molecule_window()
+        else:
+            tk.messagebox.showinfo(title="error", message="no or incorrect brackets")
 
     def edit_active_residue(self, index):
         """change active residue"""
