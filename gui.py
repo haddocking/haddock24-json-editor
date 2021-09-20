@@ -4,12 +4,12 @@ import tkinter as tk
 from json.decoder import JSONDecodeError
 from tkinter import filedialog, messagebox
 
-from PIL import ImageTk, Image
+#from PIL import ImageTk, Image
 
 root = tk.Tk()
 root.title("Haddock gui")
 root.geometry("500x500")
-root.iconphoto(False, tk.PhotoImage(file='HADDOCK-logo.png'))
+#root.iconphoto(False, tk.PhotoImage(file='HADDOCK-logo.png'))
 
 class superparent:
 
@@ -17,8 +17,8 @@ class superparent:
         """initialize and ask for json file"""
         self.myFrame = tk.Frame(master)
         self.myFrame.place(width=500, height=500)
-        self.molecule_image = ImageTk.PhotoImage(Image.open("molecule100.jpg"))
-        self.molecule_image_small = ImageTk.PhotoImage(Image.open("molecule25.jpg"))
+        #self.molecule_image = ImageTk.PhotoImage(Image.open("molecule100.jpg"))
+        #self.molecule_image_small = ImageTk.PhotoImage(Image.open("molecule25.jpg"))
         self.seconds = 0
         self.changes = []
         self.old_data = []
@@ -59,6 +59,9 @@ class superparent:
 
                            }
 
+    def picture(self):
+        """look for pictures"""
+
     def load_json(self):
         """load json into memory"""
         file = tk.filedialog.askopenfile("r", filetypes=[('Json files', '*.json')])
@@ -94,14 +97,14 @@ class superparent:
     def molecule_window(self):
         """display molecule buttons"""
         self.show_options()
-        if len(self.contents["partners"]) > 5:
-            molecule_button_image = self.molecule_image_small
-        else:
-            molecule_button_image = self.molecule_image
+        #if len(self.contents["partners"]) > 5:
+        #    molecule_button_image = self.molecule_image_small
+        #else:
+        #    molecule_button_image = self.molecule_image
         x = 0
         for item in self.contents["partners"]:
             tk.Button(self.myFrame, wraplength=130, text=" Molecule " + item + " options",
-                      image=molecule_button_image, compound=tk.LEFT, justify=tk.RIGHT, relief="groove",
+                      compound=tk.LEFT, justify=tk.RIGHT, relief="groove",
                       command=lambda item=item: [self.clear_window(), self.molecule_stats(item)]) \
                 .place(relheight=1 / len(self.contents["partners"]), relwidth=0.5, relx=0, rely=0 + x)
             x += 1 / len(self.contents["partners"])
