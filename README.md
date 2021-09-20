@@ -2,12 +2,12 @@
 
 # requirements:
 
+the haddock-logo and molecule images are required to be in the same map as the gui.
+
 python 3
 tkinter
 
 # for windows users:
-
-the haddock-logo and molecule images are required to be in the same map as the gui.
 
 Windows users can just doubleclick the exe file.
 
