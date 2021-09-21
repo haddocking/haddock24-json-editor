@@ -7,7 +7,7 @@ from tkinter import filedialog, messagebox
 from PIL import ImageTk, Image
 
 root = tk.Tk()
-root.title("Haddock gui")
+root.title("Haddock json editor")
 root.geometry("500x500")
 
 try:
@@ -28,6 +28,8 @@ class superparent:
         self.mbox = tk.messagebox
         self.molecule_image = ImageTk.PhotoImage(Image.open("molecule100.jpg"))
         self.molecule_image_small = ImageTk.PhotoImage(Image.open("molecule25.jpg"))
+        self.haddock_image = ImageTk.PhotoImage(Image.open("HADDOCK-logo.png"))
+
 
         tk.Button(self.myFrame, text="Click me and and then select a Json file", relief="groove",
                   command=lambda: [self.load_json(), self.clear_window(), self.molecule_window()]) \
@@ -35,6 +37,7 @@ class superparent:
         tk.Button(self.myFrame, text="Click me for help", relief="groove",
                   command=lambda: [self.faq()]) \
             .place(relheight=0.2, relwidth=1, relx=0, rely=0.2)
+        tk.Label(self.myFrame, image=self.haddock_image).place(relheight=0.4, relwidth=1, relx=0, rely=0.5)
 
         self.faq()
 
@@ -45,11 +48,8 @@ class superparent:
         """load json into memory"""
         file = tk.filedialog.askopenfile("r", filetypes=[('Json files', '*.json')])
         if not file:
-            self.mbox.showinfo(message="I need a json file")
-            if not hasattr(self, "contents"):
-                self.mbox.showinfo(message="Sorry I really need a json file to begin working,\
-                please run the program again and select one. exiting.")
-                exit()
+            self.mbox.showinfo(message="I need a json file, exiting")
+            exit()
         else:
             try:
                 self.name = os.path.basename(file.name)

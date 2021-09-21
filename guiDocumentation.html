@@ -35,7 +35,7 @@ from tkinter import filedialog, messagebox
 from PIL import ImageTk, Image
 
 root = tk.Tk()
-root.title(&#34;Haddock gui&#34;)
+root.title(&#34;Haddock json editor&#34;)
 root.geometry(&#34;500x500&#34;)
 
 try:
@@ -56,6 +56,8 @@ class superparent:
         self.mbox = tk.messagebox
         self.molecule_image = ImageTk.PhotoImage(Image.open(&#34;molecule100.jpg&#34;))
         self.molecule_image_small = ImageTk.PhotoImage(Image.open(&#34;molecule25.jpg&#34;))
+        self.haddock_image = ImageTk.PhotoImage(Image.open(&#34;HADDOCK-logo.png&#34;))
+
 
         tk.Button(self.myFrame, text=&#34;Click me and and then select a Json file&#34;, relief=&#34;groove&#34;,
                   command=lambda: [self.load_json(), self.clear_window(), self.molecule_window()]) \
@@ -63,6 +65,7 @@ class superparent:
         tk.Button(self.myFrame, text=&#34;Click me for help&#34;, relief=&#34;groove&#34;,
                   command=lambda: [self.faq()]) \
             .place(relheight=0.2, relwidth=1, relx=0, rely=0.2)
+        tk.Label(self.myFrame, image=self.haddock_image).place(relheight=0.4, relwidth=1, relx=0, rely=0.5)
 
         self.faq()
 
@@ -73,11 +76,8 @@ class superparent:
         &#34;&#34;&#34;load json into memory&#34;&#34;&#34;
         file = tk.filedialog.askopenfile(&#34;r&#34;, filetypes=[(&#39;Json files&#39;, &#39;*.json&#39;)])
         if not file:
-            self.mbox.showinfo(message=&#34;I need a json file&#34;)
-            if not hasattr(self, &#34;contents&#34;):
-                self.mbox.showinfo(message=&#34;Sorry I really need a json file to begin working,\
-                please run the program again and select one. exiting.&#34;)
-                exit()
+            self.mbox.showinfo(message=&#34;I need a json file, exiting&#34;)
+            exit()
         else:
             try:
                 self.name = os.path.basename(file.name)
@@ -364,6 +364,8 @@ if __name__ == &#34;__main__&#34;:
         self.mbox = tk.messagebox
         self.molecule_image = ImageTk.PhotoImage(Image.open(&#34;molecule100.jpg&#34;))
         self.molecule_image_small = ImageTk.PhotoImage(Image.open(&#34;molecule25.jpg&#34;))
+        self.haddock_image = ImageTk.PhotoImage(Image.open(&#34;HADDOCK-logo.png&#34;))
+
 
         tk.Button(self.myFrame, text=&#34;Click me and and then select a Json file&#34;, relief=&#34;groove&#34;,
                   command=lambda: [self.load_json(), self.clear_window(), self.molecule_window()]) \
@@ -371,6 +373,7 @@ if __name__ == &#34;__main__&#34;:
         tk.Button(self.myFrame, text=&#34;Click me for help&#34;, relief=&#34;groove&#34;,
                   command=lambda: [self.faq()]) \
             .place(relheight=0.2, relwidth=1, relx=0, rely=0.2)
+        tk.Label(self.myFrame, image=self.haddock_image).place(relheight=0.4, relwidth=1, relx=0, rely=0.5)
 
         self.faq()
 
@@ -381,11 +384,8 @@ if __name__ == &#34;__main__&#34;:
         &#34;&#34;&#34;load json into memory&#34;&#34;&#34;
         file = tk.filedialog.askopenfile(&#34;r&#34;, filetypes=[(&#39;Json files&#39;, &#39;*.json&#39;)])
         if not file:
-            self.mbox.showinfo(message=&#34;I need a json file&#34;)
-            if not hasattr(self, &#34;contents&#34;):
-                self.mbox.showinfo(message=&#34;Sorry I really need a json file to begin working,\
-                please run the program again and select one. exiting.&#34;)
-                exit()
+            self.mbox.showinfo(message=&#34;I need a json file, exiting&#34;)
+            exit()
         else:
             try:
                 self.name = os.path.basename(file.name)
@@ -742,11 +742,8 @@ if __name__ == &#34;__main__&#34;:
     &#34;&#34;&#34;load json into memory&#34;&#34;&#34;
     file = tk.filedialog.askopenfile(&#34;r&#34;, filetypes=[(&#39;Json files&#39;, &#39;*.json&#39;)])
     if not file:
-        self.mbox.showinfo(message=&#34;I need a json file&#34;)
-        if not hasattr(self, &#34;contents&#34;):
-            self.mbox.showinfo(message=&#34;Sorry I really need a json file to begin working,\
-            please run the program again and select one. exiting.&#34;)
-            exit()
+        self.mbox.showinfo(message=&#34;I need a json file, exiting&#34;)
+        exit()
     else:
         try:
             self.name = os.path.basename(file.name)
