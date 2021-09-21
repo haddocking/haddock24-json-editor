@@ -11,7 +11,7 @@ root.title("Haddock json editor")
 root.geometry("500x500")
 
 try:
-    root.iconphoto(False, tk.PhotoImage(file='HADDOCK-logo.png'))
+    root.iconphoto(False, tk.PhotoImage(file='HADDOCK-logo-small.png'))
 except:
     pass
 
