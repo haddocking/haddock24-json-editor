@@ -184,30 +184,44 @@ class superparent:
 
     def save_active_residue_list(self, index, entry):
         """save active residue"""
-        residue_update = f"Active residue list of molecule {index} in the {self.name} file has been updated"
-        self.changes.append(residue_update)
-        self.contents['partners'][index]['activereslist'] = json.loads(entry)
-        self.mbox.showinfo(message="residue_list succesfully replaced")
-        self.clear_window()
-        self.molecule_window()
+        # weird_user_input_handler
+        try:
+            json.loads(entry)
+        except:
+            self.mbox.showinfo(message="Something is wrong with the input, maybe you forgot a bracket or put a letter in or something")
+            return
+        else:
+            residue_update = f"Active residue list of molecule {index} in the {self.name} file has been updated"
+            self.changes.append(residue_update)
+            self.contents['partners'][index]['activereslist'] = json.loads(entry)
+            self.mbox.showinfo(message="residue_list succesfully replaced")
+            self.clear_window()
+            self.molecule_window()
 
 
 
 
     def save_passive_residue_list(self, index, entry):
         """save passive residue"""
-        residue_update = f"Passive residue list of molecule {index} in the {self.name} file has been updated"
-        self.changes.append(residue_update)
-        self.contents['partners'][index]['passivereslist'] = json.loads(entry)
-        self.mbox.showinfo(message="residue_list succesfully replaced")
-        self.clear_window()
-        self.molecule_window()
+        #weird_user_input_handler
+        try:
+            json.loads(entry)
+        except:
+            self.mbox.showinfo(message="Something is wrong with the input, maybe you forgot a bracket or put a letter in or something")
+            return
+        else:
+            residue_update = f"Passive residue list of molecule {index} in the {self.name} file has been updated"
+            self.changes.append(residue_update)
+            self.contents['partners'][index]['passivereslist'] = json.loads(entry)
+            self.mbox.showinfo(message="residue_list succesfully replaced")
+            self.clear_window()
+            self.molecule_window()
 
 
 
     def edit_active_residue(self, index):
         """change active residue"""
-        print(self.contents['partners'][index]['activereslist'])
+
         tk.Label(self.myFrame, text="Active res list, use the box below for editing") \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0)
         e = tk.Entry(self.myFrame)
@@ -220,6 +234,8 @@ class superparent:
         tk.Button(self.myFrame, text="Click me to go back to molecule selection", relief="groove",
                   command=lambda: [self.clear_window(), self.molecule_window()]) \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0.9)
+        tk.Label(self.myFrame, text=f"Format in these files is really importand, and mistakes are easely made here.\nWhat is currently located in your active/passive reslist is already displayed.\nThe format is square brackets as casing for the numbers which are seperated by a comma.\nFor multiple lists structure wrap square brackets and seperate them with a comma\n\nThis means you can turn example input [1,2,3,4,5,6,7] \n \n Into: \n ----- Single list: [3675756,3,4,56,76,2] \n ----- Multiple lists in list: [[1,2,3,4,654654645,3],[1,1,234,343],[1,4545,4]] \nSeperate the individual lists with a comma and wrap them in brackets\n\nThis means if you have a modified list already-\nYou can just copy paste it in and press save and done", justify="left") \
+            .place(relheight=0.6, relwidth=1, relx=0, rely=0.3)
 
     def edit_passive_residue(self, index):
         """change passive residue"""
@@ -236,6 +252,10 @@ class superparent:
         tk.Button(self.myFrame, text="Click me to go back to molecule selection", relief="groove",
                   command=lambda: [self.clear_window(), self.molecule_window()]) \
             .place(relheight=0.1, relwidth=1, relx=0, rely=0.9)
+        tk.Label(self.myFrame,
+                 text=f"Format in these files is really importand, and mistakes are easely made here.\nWhat is currently located in your active/passive reslist is already displayed.\nThe format is square brackets as casing for the numbers which are seperated by a comma.\nFor multiple lists structure wrap square brackets and seperate them with a comma\n\nThis means you can turn example input [1,2,3,4,5,6,7] \n \n Into: \n ----- Single list: [3675756,3,4,56,76,2] \n ----- Multiple lists in list: [[1,2,3,4,654654645,3],[1,1,234,343],[1,4545,4]] \nSeperate the individual lists with a comma and wrap them in brackets\n\nThis means if you have a modified list already-\nYou can just copy paste it in and press save and done",
+                 justify="left") \
+            .place(relheight=0.6, relwidth=1, relx=0, rely=0.3)
 
     def table_stats(self, item):
         """list table options"""
