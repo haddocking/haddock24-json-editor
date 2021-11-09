@@ -102,8 +102,10 @@ You will be presented with the following screen
 
 ![ExplainPicture9](https://user-images.githubusercontent.com/39408360/140933024-3831f988-009b-4891-b144-3cdcb0aad1a0.png)
 
+Editing a residue you can do by clicking on the text box and using your keyboard.
+If the residue for some reason is very large and you need to change it with another very large residue, you can use doubleclick on the textbox and then ctrl-c ctrl-v (copy paste) your new residue in. 
 
-
+![ExplainPicture10](https://user-images.githubusercontent.com/39408360/140936507-3916a13d-8570-466d-a26d-8c5b5a5ae006.png)
 
 # Updates/desires/requests
 
