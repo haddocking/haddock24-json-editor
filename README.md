@@ -12,10 +12,10 @@ This is meant as an offline/intermediary solution to editing molecule json files
 
 The haddock-logo and molecule images are required to be in the same map as the gui.py script.
 
-In addition, you require the following packages.
-- python 3
+In addition to python 3, you require the following packages.
 - tkinter
-
+- PIL
+ 
 # for windows users:
 
 Windows users can just doubleclick the exe file. But incase you wish to open it via a terminal or you forgot to install tkinter. Type cmd into your windows searchbar and open the terminal. Navigate to the map of your choice and run the following commands. You can skip the first 2 steps and just download as a zip from https://github.com/haddocking/haddock24-json-editor if you wish. Bear in mind this will require you to navigate to the map where you downloaded the file in your cmd using the CD (change directory) command.
