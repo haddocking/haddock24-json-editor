@@ -112,3 +112,7 @@ You will then be taken back to the molecule selection screen, having done our ch
 ![ExplainPicture11](https://user-images.githubusercontent.com/39408360/140937729-5b6215d8-f92a-4be9-b602-fa198b071041.png)
 
 Save your file and done!
+
+# Updates/desires/requests
+
+If you would like more, maybe different options, feel free to add requests below 
