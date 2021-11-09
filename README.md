@@ -107,6 +107,8 @@ If the residue for some reason is very large and you need to change it with anot
 
 ![ExplainPicture10](https://user-images.githubusercontent.com/39408360/140936507-3916a13d-8570-466d-a26d-8c5b5a5ae006.png)
 
-# Updates/desires/requests
+You will then be taken back to the molecule selection screen, having done our changes we now save the new file.
 
-If you would like different graphs, maybe different options, feel free to add requests below 
+![ExplainPicture11](https://user-images.githubusercontent.com/39408360/140937729-5b6215d8-f92a-4be9-b602-fa198b071041.png)
+
+Save your file and done!
