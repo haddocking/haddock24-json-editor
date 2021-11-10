@@ -31,7 +31,6 @@ git clone https://github.com/haddocking/haddock24-json-editor
 
 ```
 pip install -r requirements.txt
-
 ```
 
 ```
