@@ -43,6 +43,8 @@ open terminal, navigate to your map of choice. If you already have git you can s
 
 Just copy pasta the commands below into your terminal. Say Y if it asks you a Y/n question.
 
+sidenote: some versions of linux have issues with tkinter and/or python, while perfectly solvable this involves different steps with package managers depending on the destro. Switch to windows if you don't know how to fix these issues.
+
 ```
 sudo apt-get install git
 ```
