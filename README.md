@@ -10,18 +10,15 @@ This is meant as an offline/intermediary solution to editing molecule json files
 
 # requirements:
 
-The haddock-logo and molecule images are required to be in the same map as the gui.py script.
+- A working python 3 environment with pip. 
+- The haddock-logo and molecule images are required to be in the same map as the gui.py script.
 
-In addition to python 3, you require the following packages.
-- tkinter
-- PIL
  
 # for windows users:
 
 open cmd, navigate to your map of choice. If you already have git you can skip the first step
 
 Just copy pasta the commands below into your terminal. Say Y if it asks you a Y/n question. 
-
 
 
 ```
