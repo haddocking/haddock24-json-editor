@@ -18,7 +18,10 @@ In addition to python 3, you require the following packages.
  
 # for windows users:
 
-Windows users can just doubleclick the exe file. But incase you wish to open it via a terminal or you forgot to install tkinter. Type cmd into your windows searchbar and open the terminal. Navigate to the map of your choice and run the following commands. You can skip the first 2 steps and just download as a zip from https://github.com/haddocking/haddock24-json-editor if you wish. Bear in mind this will require you to navigate to the map where you downloaded the file in your cmd using the CD (change directory) command.
+open cmd, navigate to your map of choice. If you already have git you can skip the first step
+
+Just copy pasta the commands below into your terminal. Say Y if it asks you a Y/n question. 
+
 
 
 ```
@@ -30,11 +33,8 @@ git clone https://github.com/haddocking/haddock24-json-editor
 ```
 
 ```
-pip install tkinter
-```
+pip install -r requirements.txt
 
-```
-pip install PIL
 ```
 
 ```
@@ -43,12 +43,12 @@ gui.py
 
 # For linux users:
 
-open terminal, navigate to your map of choice.
+open terminal, navigate to your map of choice. If you already have git you can skip the first step
 
 Just copy pasta the commands below into your terminal. Say Y if it asks you a Y/n question.
 
 ```
-sudo apt install git
+sudo apt-get install git
 ```
 
 ```
@@ -56,11 +56,7 @@ git clone https://github.com/haddocking/haddock24-json-editor
 ```
 
 ```
-sudo apt-get install python3-tk
-```
-
-```
-sudo apt-get install python3-pil python3-pil.imagetk
+pip3 install -r requirements.txt
 ```
 
 ```
